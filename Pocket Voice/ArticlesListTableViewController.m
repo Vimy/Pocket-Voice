@@ -28,9 +28,18 @@
 {
     [super viewDidLoad];
     
+    [self loadPocketArticles];
     
+    [self.tableView reloadData];
     
-    
+    if([[PocketAPI sharedAPI] isLoggedIn])
+    {
+        NSLog(@"We zijn ingelogd!");
+    }
+    else
+    {
+        NSLog(@"We zijn niet ingelogd!");
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -50,13 +59,13 @@
     
     NSDictionary* argumentDictionary = @{@"actions":jsonString};
     
-    [[PocketAPI sharedAPI] callAPIMethod:@"post"
+    [[PocketAPI sharedAPI] callAPIMethod:@"get"
                           withHTTPMethod:PocketAPIHTTPMethodPOST
                                arguments:argumentDictionary
                                  handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error){
                                      pocketItemsDic = [response copy];
-                                     
-                                     NSLog(@"response %@", [response description]);
+                                       NSLog(@"response Original %@", [response description]);
+                                     NSLog(@"response %@", [pocketItemsDic description]);
                                      NSLog(@"error %@", [error localizedDescription]);
                                  }];
 
@@ -74,18 +83,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [pocketItemsDic count];
+    NSLog(@"De count is :%@",[[pocketItemsDic objectForKey:@"list" ] count]);
+    return [[pocketItemsDic objectForKey:@"list"  ] count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pocketCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    
+    cell.textLabel.text = @"test";
+    cell.detailTextLabel.text = @"subtext test";
+    
+
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
