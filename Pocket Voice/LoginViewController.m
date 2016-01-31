@@ -21,7 +21,8 @@
 
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 //    NSError* errorJSON;
 //    NSArray *actions = @[@{ @"count": @"10", @"detailType": @"complete" }];
@@ -41,7 +42,7 @@
 //                                 //    NSLog(@"response %@", [pocketItemsDic description]);
 //                                     NSLog(@"error %@", [error localizedDescription]);
 //                                 }];
-//
+
     // Do any additional setup after loading the view.
 }
 
@@ -55,7 +56,11 @@
     {
         NSLog(@"Hoera!");
         
-        
+        if (error)
+        {
+            NSLog(@"Dit is de mogelijke error: %@",[error userInfo] );
+        }
+   //
         
         
         
@@ -64,6 +69,7 @@
     
     
 }
+
 
 /*
 #pragma mark - Navigation

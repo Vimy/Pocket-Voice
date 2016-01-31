@@ -13,9 +13,9 @@
 		39092F181BB7062F001AAB77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39092F161BB7062F001AAB77 /* Main.storyboard */; };
 		39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39092F191BB7062F001AAB77 /* Assets.xcassets */; };
 		39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */; };
-		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394835611BB9B20B003A60E3 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */; settings = {ASSET_TAGS = (); }; };
+		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
+		394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394835611BB9B20B003A60E3 /* LoginViewController.m */; };
+		39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +125,7 @@
 				39092F071BB7062F001AAB77 /* Frameworks */,
 				39092F081BB7062F001AAB77 /* Resources */,
 				EB5BBB6C86E4039CCF17C4FB /* Copy Pods Resources */,
+				1982098AEE52CA5B936F3A83 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,6 +182,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1982098AEE52CA5B936F3A83 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9F4B3711DCCE6B637366FE2C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

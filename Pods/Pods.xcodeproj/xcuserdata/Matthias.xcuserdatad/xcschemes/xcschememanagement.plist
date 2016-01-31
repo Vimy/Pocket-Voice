@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-PocketAPI.xcscheme</key>
+		<key>PocketAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>622C4E1A43B10CD70CFDDF83</key>
+		<key>2C5CBA8B69D039CD43A1CF822338AE11</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7EDC2FC75F087F5A0AE3044</key>
+		<key>DC70351300DAE862A3516C1EBC6D2289</key>
 		<dict>
 			<key>primary</key>
 			<true/>

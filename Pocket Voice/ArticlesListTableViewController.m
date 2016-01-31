@@ -13,6 +13,7 @@
 
 @interface ArticlesListTableViewController ()
 {
+    NSMutableArray *pocketItemsArray;
     NSDictionary *pocketItemsDic;
 }
 @end
@@ -21,8 +22,11 @@
 //https://www.readability.com/developers/api
 
 
-
+  
 @implementation ArticlesListTableViewController
+
+
+
 
 - (void)viewDidLoad
 {
@@ -59,40 +63,64 @@
     
     NSDictionary* argumentDictionary = @{@"actions":jsonString};
     
+    
     [[PocketAPI sharedAPI] callAPIMethod:@"get"
                           withHTTPMethod:PocketAPIHTTPMethodPOST
                                arguments:argumentDictionary
                                  handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error){
-                                     pocketItemsDic = [response copy];
-                                       NSLog(@"response Original %@", [response description]);
-                                     NSLog(@"response %@", [pocketItemsDic description]);
-                                     NSLog(@"error %@", [error localizedDescription]);
-                                 }];
+                                     pocketItemsDic = [response valueForKeyPath:@"list"];
+
+                                     NSArray *keys = [pocketItemsDic allKeys];
+                                     NSLog(@"Keyz: %@", keys);
+                                     
+                                      pocketItemsArray = [NSMutableArray array];
+                                     for (id key in keys)
+                                     {
+                                         NSDictionary *ArticleDic = [pocketItemsDic valueForKey:key];
+                                         NSLog(@"Dit is de dic: %@", ArticleDic);
+                                         [pocketItemsArray addObject:[ArticleDic valueForKeyPath:@"given_title"]];
+                                         
+                                     }
+                                     
+                                     [self.tableView reloadData];
+                                    
+                                                                    }];
+    
+    
+    //http://blog.mobilejazz.com/ios-using-kvc-to-parse-json/
 
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"De count is :%@",[[pocketItemsDic objectForKey:@"list" ] count]);
-    return [[pocketItemsDic objectForKey:@"list"  ] count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return [pocketItemsArray count];
+    //NSLog(@"De count is :%lu",[[pocketItemsDic valueForKey:@"list" ] count]);
+   
+    
+    // return [[pocketItemsDic valueForKey:@"list"  ] count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pocketCell" forIndexPath:indexPath];
     
     
-    cell.textLabel.text = @"test";
+    cell.textLabel.text = [pocketItemsArray objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = @"subtext test";
     
 
