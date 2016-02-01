@@ -17,9 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
     [[PocketAPI sharedAPI] setConsumerKey:@"46280-1a2011393890da7aead8e90c"];
-    
+
+    NSString *storyboardId = [[PocketAPI sharedAPI] isLoggedIn] ? @"articlesListVC" : @"loginVC";
+    self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:storyboardId];
+
     
     return YES;
 }

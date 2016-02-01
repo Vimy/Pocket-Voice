@@ -11,8 +11,7 @@
 
 
 @interface LoginViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordTextfield;
+
 @property (nonatomic, copy) void (^loggedInHandler)(void);
 
 @end
@@ -52,21 +51,16 @@
 }
 - (IBAction)loginButtonPressed:(UIButton *)sender
 {
-    [[PocketAPI sharedAPI] loginWithHandler:^(PocketAPI *api, NSError *error)
-    {
-        NSLog(@"Hoera!");
-        
-        if (error)
-        {
-            NSLog(@"Dit is de mogelijke error: %@",[error userInfo] );
-        }
-   //
-        
-        
-        
-
-    }];
-    
+        [[PocketAPI sharedAPI] loginWithHandler:^(PocketAPI *api, NSError *error)
+               {
+                   
+          
+                   if (error)
+                   {
+                      NSLog(@"Dit is de mogelijke error: %@",[error userInfo]);
+                   }
+                
+                   }];
     
 }
 

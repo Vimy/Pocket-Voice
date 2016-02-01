@@ -76,15 +76,9 @@
 			children = (
 				39092F101BB7062F001AAB77 /* AppDelegate.h */,
 				39092F111BB7062F001AAB77 /* AppDelegate.m */,
-				39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */,
-				39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */,
+				396684CE1C5FD71F00FCE48E /* Model */,
+				396684CD1C5FD71000FCE48E /* Views */,
 				39092F161BB7062F001AAB77 /* Main.storyboard */,
-				393715201C5ED14500CFD16A /* DetailViewController.h */,
-				393715211C5ED14500CFD16A /* DetailViewController.m */,
-				394835601BB9B20B003A60E3 /* LoginViewController.h */,
-				394835611BB9B20B003A60E3 /* LoginViewController.m */,
-				39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */,
-				39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */,
 				39092F191BB7062F001AAB77 /* Assets.xcassets */,
 				39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */,
 				39092F1E1BB7062F001AAB77 /* Info.plist */,
@@ -99,6 +93,28 @@
 				39092F0E1BB7062F001AAB77 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		396684CD1C5FD71000FCE48E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */,
+				39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */,
+				393715201C5ED14500CFD16A /* DetailViewController.h */,
+				393715211C5ED14500CFD16A /* DetailViewController.m */,
+				394835601BB9B20B003A60E3 /* LoginViewController.h */,
+				394835611BB9B20B003A60E3 /* LoginViewController.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		396684CE1C5FD71F00FCE48E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */,
+				39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		92FC330093F1917A1424A41A /* Pods */ = {
