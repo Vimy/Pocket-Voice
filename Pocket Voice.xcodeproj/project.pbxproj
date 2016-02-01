@@ -16,6 +16,7 @@
 		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
 		393715221C5ED14500CFD16A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393715211C5ED14500CFD16A /* DetailViewController.m */; };
 		394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394835611BB9B20B003A60E3 /* LoginViewController.m */; };
+		396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 396684D01C5FDA4B00FCE48E /* PocketManager.m */; };
 		39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,8 @@
 		393715211C5ED14500CFD16A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		394835601BB9B20B003A60E3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		394835611BB9B20B003A60E3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		396684CF1C5FDA4B00FCE48E /* PocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketManager.h; sourceTree = "<group>"; };
+		396684D01C5FDA4B00FCE48E /* PocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketManager.m; sourceTree = "<group>"; };
 		39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketItem.h; sourceTree = "<group>"; };
 		39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketItem.m; sourceTree = "<group>"; };
 		499AE7A6C3E8B6133690D58C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -76,8 +79,8 @@
 			children = (
 				39092F101BB7062F001AAB77 /* AppDelegate.h */,
 				39092F111BB7062F001AAB77 /* AppDelegate.m */,
-				396684CE1C5FD71F00FCE48E /* Model */,
 				396684CD1C5FD71000FCE48E /* Views */,
+				396684CE1C5FD71F00FCE48E /* Model */,
 				39092F161BB7062F001AAB77 /* Main.storyboard */,
 				39092F191BB7062F001AAB77 /* Assets.xcassets */,
 				39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */,
@@ -113,6 +116,8 @@
 			children = (
 				39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */,
 				39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */,
+				396684CF1C5FDA4B00FCE48E /* PocketManager.h */,
+				396684D01C5FDA4B00FCE48E /* PocketManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */,
 				394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */,
 				39092F121BB7062F001AAB77 /* AppDelegate.m in Sources */,
 				39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */,
