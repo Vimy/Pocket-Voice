@@ -14,6 +14,7 @@
 		39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39092F191BB7062F001AAB77 /* Assets.xcassets */; };
 		39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */; };
 		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
+		393715221C5ED14500CFD16A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393715211C5ED14500CFD16A /* DetailViewController.m */; };
 		394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394835611BB9B20B003A60E3 /* LoginViewController.m */; };
 		39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,8 @@
 		39092F1E1BB7062F001AAB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesListTableViewController.h; sourceTree = "<group>"; };
 		39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesListTableViewController.m; sourceTree = "<group>"; };
+		393715201C5ED14500CFD16A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		393715211C5ED14500CFD16A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		394835601BB9B20B003A60E3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		394835611BB9B20B003A60E3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketItem.h; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 				39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */,
 				39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */,
 				39092F161BB7062F001AAB77 /* Main.storyboard */,
+				393715201C5ED14500CFD16A /* DetailViewController.h */,
+				393715211C5ED14500CFD16A /* DetailViewController.m */,
 				394835601BB9B20B003A60E3 /* LoginViewController.h */,
 				394835611BB9B20B003A60E3 /* LoginViewController.m */,
 				39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */,
@@ -239,6 +244,7 @@
 				39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */,
 				39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */,
 				39092F0F1BB7062F001AAB77 /* main.m in Sources */,
+				393715221C5ED14500CFD16A /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

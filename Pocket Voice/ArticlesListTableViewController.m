@@ -9,6 +9,7 @@
 #import "ArticlesListTableViewController.h"
 #import "PocketItem.h"
 #import <PocketAPI.h>
+#import "DetailViewController.h"
 
 
 @interface ArticlesListTableViewController ()
@@ -78,8 +79,13 @@
                                      {
                                          NSDictionary *ArticleDic = [pocketItemsDic valueForKey:key];
                                          NSLog(@"Dit is de dic: %@", ArticleDic);
-                                         [pocketItemsArray addObject:[ArticleDic valueForKeyPath:@"given_title"]];
-                                         
+                                         //[pocketItemsArray addObject:[ArticleDic valueForKeyPath:@"given_title"]];
+                                      
+                                         PocketItem *item = [[PocketItem alloc]init];
+                                         item.url = [ArticleDic valueForKeyPath:@"given_url"];
+                                         item.title = [ArticleDic valueForKeyPath:@"given_title"];
+                                         item.excerpt = [ArticleDic valueForKeyPath:@"excerpt"];
+                                         [pocketItemsArray addObject:item];
                                      }
                                      
                                      [self.tableView reloadData];
@@ -119,15 +125,28 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pocketCell" forIndexPath:indexPath];
     
-    
-    cell.textLabel.text = [pocketItemsArray objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = @"subtext test";
+    PocketItem *item = [pocketItemsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = item.title;
+    cell.detailTextLabel.text = item.url;
     
 
     
     return cell;
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showDetail"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        DetailViewController *detail = segue.destinationViewController;
+        detail.item = [pocketItemsArray objectAtIndex:indexPath.row];
+    }
+    
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
 
 /*
 // Override to support conditional editing of the table view.

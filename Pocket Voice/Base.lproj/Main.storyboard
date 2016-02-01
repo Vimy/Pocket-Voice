@@ -37,7 +37,7 @@
                                 <rect key="frame" x="163" y="294" width="66" height="30"/>
                                 <state key="normal" title="Go to List"/>
                                 <connections>
-                                    <segue destination="L8q-dL-k0D" kind="show" id="qjE-Tz-08x"/>
+                                    <segue destination="ubh-tE-CxM" kind="show" id="qjE-Tz-08x"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93S-qE-QRS">
@@ -66,7 +66,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pocketCell" textLabel="OYQ-eS-2mP" detailTextLabel="7zV-UV-Wyj" style="IBUITableViewCellStyleSubtitle" id="WHX-Yx-p81">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WHX-Yx-p81" id="exP-09-gze">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -88,6 +88,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BAX-mA-lpN" kind="show" identifier="showDetail" id="8e3-Yf-Aj1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -95,9 +98,64 @@
                             <outlet property="delegate" destination="L8q-dL-k0D" id="96g-6R-zDW"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="IYr-00-Hhu"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oc-fI-vy8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="982.5" y="433.5"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="FZo-mY-Szx">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BAX-mA-lpN" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P8J-K0-26f"/>
+                        <viewControllerLayoutGuide type="bottom" id="CpU-aX-QDg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8k8-j7-buW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6gJ-ed-ZX9">
+                                <rect key="frame" x="20" y="28" width="335" height="279"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ML2-t0-L8E">
+                                <rect key="frame" x="158" y="338" width="59" height="30"/>
+                                <state key="normal" title="Play text"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="TextView" destination="6gJ-ed-ZX9" id="DBk-ov-VaT"/>
+                        <outlet property="textView" destination="6gJ-ed-ZX9" id="FQa-K8-Dof"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eAa-1c-Ksl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1435.5" y="433.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="q3g-aa-dxt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ubh-tE-CxM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VjT-Yi-vfa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L8q-dL-k0D" kind="relationship" relationship="rootViewController" id="UdI-hq-eyY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJc-X0-DJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="395.5" y="433.5"/>
         </scene>
