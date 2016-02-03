@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PocketItem.h"
+@import WatsonDeveloperCloud;
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) PocketItem *item;
 

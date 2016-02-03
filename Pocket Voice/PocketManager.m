@@ -21,7 +21,7 @@
 //http://zeroheroblog.com/ios/how-to-use-blocks-as-callbacks
 //http://themainthread.com/blog/2012/09/communicating-with-blocks-in-objective-c.html
 
-- (void)loadPocketArticlesWithCallback: (LoadPArticlesCompletionBlock)callback
+- (void)loadPocketArticlesWithCallback:(LoadPArticlesCompletionBlock)callback
 {
     
     NSError* errorJSON;
@@ -50,7 +50,7 @@
                                          NSLog(@"Dit is de dic: %@", ArticleDic);
                                          //[pocketItemsArray addObject:[ArticleDic valueForKeyPath:@"given_title"]];
                                          PocketItem *item = [[PocketItem alloc]init];
-                                         item.url = [ArticleDic valueForKeyPath:@"given_url"];
+                                         item.url = [self getDomainFromUrlString:[ArticleDic valueForKeyPath:@"given_url"]];
                                          item.title = [ArticleDic valueForKeyPath:@"resolved_title"];
                                          item.excerpt = [ArticleDic valueForKeyPath:@"excerpt"];
                                          double timestamp = [[ArticleDic valueForKeyPath:@"time_added"]doubleValue];
@@ -78,6 +78,13 @@
     
 }
 
+- (NSString *)getDomainFromUrlString:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSString *domain = [url host];
+    return domain;
+    
+}
 
 - (NSDate*)getDateFromUnixTimeStamp:(double)timeStamp
 {

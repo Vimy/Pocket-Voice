@@ -19,15 +19,13 @@
     NSDictionary *pocketItemsDic;
 }
 @end
-
+//https://github.com/watson-developer-cloud/ios-sdk/blob/master/Quickstart.md
 
 //https://www.readability.com/developers/api
 
 
   
 @implementation ArticlesListTableViewController
-
-
 
 
 - (void)viewDidLoad
@@ -41,7 +39,7 @@
     [manager loadPocketArticlesWithCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
         if (success)
         {
-            NSLog(@"MaggieDeBlock");
+            NSLog(@"Maggie^Block");
             pocketItemsArray = response;
             [self.tableView reloadData];
         }
@@ -101,12 +99,27 @@
     PocketItem *item = [pocketItemsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
     cell.detailTextLabel.text = item.url;
-    
 
     
     return cell;
 }
 
+#pragma mark - UI settings
+
+//https://www.hackingwithswift.com/read/32/2/automatically-resizing-uitableviewcells-with-dynamic-type-and-ns
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  UITableViewAutomaticDimension;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  UITableViewAutomaticDimension;
+}
+
+#pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

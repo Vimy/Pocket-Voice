@@ -10,4 +10,14 @@
 
 @implementation PocketItem
 
+- (NSString *)title
+{
+    if ([_title isEqualToString:@""])
+    {
+        _title = @"[Article without Title]";
+    }
+    
+    return _title;
+}
+
 @end

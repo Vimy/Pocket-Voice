@@ -15,10 +15,44 @@
 		39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */; };
 		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
 		393715221C5ED14500CFD16A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393715211C5ED14500CFD16A /* DetailViewController.m */; };
+		393D8C151C604794009457D0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C0E1C604794009457D0 /* Alamofire.framework */; };
+		393D8C161C604794009457D0 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */; };
+		393D8C171C604794009457D0 /* HTTPStatusCodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C101C604794009457D0 /* HTTPStatusCodes.framework */; };
+		393D8C181C604794009457D0 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C111C604794009457D0 /* ObjectMapper.framework */; };
+		393D8C191C604794009457D0 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C121C604794009457D0 /* Starscream.framework */; };
+		393D8C1A1C604794009457D0 /* WatsonDeveloperCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C131C604794009457D0 /* WatsonDeveloperCloud.framework */; };
+		393D8C1B1C604794009457D0 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C141C604794009457D0 /* XCGLogger.framework */; };
+		393D8C1D1C6047FB009457D0 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C0E1C604794009457D0 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		393D8C1E1C6047FB009457D0 /* AlamofireObjectMapper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		393D8C1F1C6047FB009457D0 /* HTTPStatusCodes.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C101C604794009457D0 /* HTTPStatusCodes.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		393D8C201C6047FB009457D0 /* ObjectMapper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C111C604794009457D0 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		393D8C211C6047FB009457D0 /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C121C604794009457D0 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		393D8C221C6047FB009457D0 /* WatsonDeveloperCloud.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C131C604794009457D0 /* WatsonDeveloperCloud.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		393D8C231C6047FB009457D0 /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C141C604794009457D0 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394835611BB9B20B003A60E3 /* LoginViewController.m */; };
+		395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */; };
 		396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 396684D01C5FDA4B00FCE48E /* PocketManager.m */; };
 		39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		393D8C1C1C6047F2009457D0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				393D8C1D1C6047FB009457D0 /* Alamofire.framework in CopyFiles */,
+				393D8C1E1C6047FB009457D0 /* AlamofireObjectMapper.framework in CopyFiles */,
+				393D8C1F1C6047FB009457D0 /* HTTPStatusCodes.framework in CopyFiles */,
+				393D8C201C6047FB009457D0 /* ObjectMapper.framework in CopyFiles */,
+				393D8C211C6047FB009457D0 /* Starscream.framework in CopyFiles */,
+				393D8C221C6047FB009457D0 /* WatsonDeveloperCloud.framework in CopyFiles */,
+				393D8C231C6047FB009457D0 /* XCGLogger.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1198FF6AB9F02B662E43DAFA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,8 +68,17 @@
 		39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesListTableViewController.m; sourceTree = "<group>"; };
 		393715201C5ED14500CFD16A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		393715211C5ED14500CFD16A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		393D8C0E1C604794009457D0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
+		393D8C101C604794009457D0 /* HTTPStatusCodes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HTTPStatusCodes.framework; path = Carthage/Build/iOS/HTTPStatusCodes.framework; sourceTree = "<group>"; };
+		393D8C111C604794009457D0 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		393D8C121C604794009457D0 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		393D8C131C604794009457D0 /* WatsonDeveloperCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatsonDeveloperCloud.framework; path = Carthage/Build/iOS/WatsonDeveloperCloud.framework; sourceTree = "<group>"; };
+		393D8C141C604794009457D0 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = "<group>"; };
 		394835601BB9B20B003A60E3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		394835611BB9B20B003A60E3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatsonTTSManager.swift; sourceTree = "<group>"; };
+		395A09251C618C5D00C61BB2 /* Pocket Voice-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pocket Voice-Bridging-Header.h"; sourceTree = "<group>"; };
 		396684CF1C5FDA4B00FCE48E /* PocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketManager.h; sourceTree = "<group>"; };
 		396684D01C5FDA4B00FCE48E /* PocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketManager.m; sourceTree = "<group>"; };
 		39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketItem.h; sourceTree = "<group>"; };
@@ -50,6 +93,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				024DD56B552E6A0442CB16AC /* libPods.a in Frameworks */,
+				393D8C1B1C604794009457D0 /* XCGLogger.framework in Frameworks */,
+				393D8C191C604794009457D0 /* Starscream.framework in Frameworks */,
+				393D8C161C604794009457D0 /* AlamofireObjectMapper.framework in Frameworks */,
+				393D8C181C604794009457D0 /* ObjectMapper.framework in Frameworks */,
+				393D8C151C604794009457D0 /* Alamofire.framework in Frameworks */,
+				393D8C1A1C604794009457D0 /* WatsonDeveloperCloud.framework in Frameworks */,
+				393D8C171C604794009457D0 /* HTTPStatusCodes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +109,7 @@
 		39092F011BB7062F001AAB77 = {
 			isa = PBXGroup;
 			children = (
+				393D8C0D1C6042F5009457D0 /* Frameworks */,
 				39092F0C1BB7062F001AAB77 /* Pocket Voice */,
 				39092F0B1BB7062F001AAB77 /* Products */,
 				92FC330093F1917A1424A41A /* Pods */,
@@ -86,6 +137,7 @@
 				39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */,
 				39092F1E1BB7062F001AAB77 /* Info.plist */,
 				39092F0D1BB7062F001AAB77 /* Supporting Files */,
+				395A09251C618C5D00C61BB2 /* Pocket Voice-Bridging-Header.h */,
 			);
 			path = "Pocket Voice";
 			sourceTree = "<group>";
@@ -96,6 +148,20 @@
 				39092F0E1BB7062F001AAB77 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		393D8C0D1C6042F5009457D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				393D8C0E1C604794009457D0 /* Alamofire.framework */,
+				393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */,
+				393D8C101C604794009457D0 /* HTTPStatusCodes.framework */,
+				393D8C111C604794009457D0 /* ObjectMapper.framework */,
+				393D8C121C604794009457D0 /* Starscream.framework */,
+				393D8C131C604794009457D0 /* WatsonDeveloperCloud.framework */,
+				393D8C141C604794009457D0 /* XCGLogger.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		396684CD1C5FD71000FCE48E /* Views */ = {
@@ -118,6 +184,7 @@
 				39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */,
 				396684CF1C5FDA4B00FCE48E /* PocketManager.h */,
 				396684D01C5FDA4B00FCE48E /* PocketManager.m */,
+				395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,6 +219,7 @@
 				39092F081BB7062F001AAB77 /* Resources */,
 				EB5BBB6C86E4039CCF17C4FB /* Copy Pods Resources */,
 				1982098AEE52CA5B936F3A83 /* Embed Pods Frameworks */,
+				393D8C1C1C6047F2009457D0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -265,6 +333,7 @@
 				39092F121BB7062F001AAB77 /* AppDelegate.m in Sources */,
 				39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */,
 				39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */,
+				395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */,
 				39092F0F1BB7062F001AAB77 /* main.m in Sources */,
 				393715221C5ED14500CFD16A /* DetailViewController.m in Sources */,
 			);
@@ -332,6 +401,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "./Pocket Voice/Pocket Voice-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -368,6 +438,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "./Pocket Voice/Pocket Voice-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -377,10 +448,17 @@
 			baseConfigurationReference = B941D383516E7C9E3358E3FE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Pocket Voice/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.noizystudios.Pocket-Voice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Pocket Voice/Pocket Voice-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -389,10 +467,17 @@
 			baseConfigurationReference = 499AE7A6C3E8B6133690D58C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Pocket Voice/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.noizystudios.Pocket-Voice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Pocket Voice/Pocket Voice-Bridging-Header.h";
 			};
 			name = Release;
 		};
