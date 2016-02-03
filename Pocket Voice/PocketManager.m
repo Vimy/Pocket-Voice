@@ -47,10 +47,11 @@
                                      for (id key in keys)
                                      {
                                          NSDictionary *ArticleDic = [pocketItemsDic valueForKey:key];
-                                         NSLog(@"Dit is de dic: %@", ArticleDic);
+                                      //   NSLog(@"Dit is de dic: %@", ArticleDic);
                                          //[pocketItemsArray addObject:[ArticleDic valueForKeyPath:@"given_title"]];
                                          PocketItem *item = [[PocketItem alloc]init];
-                                         item.url = [self getDomainFromUrlString:[ArticleDic valueForKeyPath:@"given_url"]];
+                                         item.url = [ArticleDic valueForKeyPath:@"given_url"];
+                                         item.domain = [self getDomainFromUrlString:[ArticleDic valueForKeyPath:@"given_url"]];
                                          item.title = [ArticleDic valueForKeyPath:@"resolved_title"];
                                          item.excerpt = [ArticleDic valueForKeyPath:@"excerpt"];
                                          double timestamp = [[ArticleDic valueForKeyPath:@"time_added"]doubleValue];

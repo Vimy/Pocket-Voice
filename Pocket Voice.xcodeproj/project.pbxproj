@@ -14,6 +14,7 @@
 		39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39092F191BB7062F001AAB77 /* Assets.xcassets */; };
 		39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */; };
 		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
+		393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 393447131C628BBF0021BD1D /* ReadabilityManager.m */; };
 		393715221C5ED14500CFD16A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393715211C5ED14500CFD16A /* DetailViewController.m */; };
 		393D8C151C604794009457D0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C0E1C604794009457D0 /* Alamofire.framework */; };
 		393D8C161C604794009457D0 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */; };
@@ -66,6 +67,8 @@
 		39092F1E1BB7062F001AAB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesListTableViewController.h; sourceTree = "<group>"; };
 		39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesListTableViewController.m; sourceTree = "<group>"; };
+		393447121C628BBF0021BD1D /* ReadabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadabilityManager.h; sourceTree = "<group>"; };
+		393447131C628BBF0021BD1D /* ReadabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadabilityManager.m; sourceTree = "<group>"; };
 		393715201C5ED14500CFD16A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		393715211C5ED14500CFD16A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		393D8C0E1C604794009457D0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -130,11 +133,10 @@
 			children = (
 				39092F101BB7062F001AAB77 /* AppDelegate.h */,
 				39092F111BB7062F001AAB77 /* AppDelegate.m */,
-				396684CD1C5FD71000FCE48E /* Views */,
+				396684CD1C5FD71000FCE48E /* ViewControllers */,
 				396684CE1C5FD71F00FCE48E /* Model */,
-				39092F161BB7062F001AAB77 /* Main.storyboard */,
+				393447111C628B9C0021BD1D /* Views */,
 				39092F191BB7062F001AAB77 /* Assets.xcassets */,
-				39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */,
 				39092F1E1BB7062F001AAB77 /* Info.plist */,
 				39092F0D1BB7062F001AAB77 /* Supporting Files */,
 				395A09251C618C5D00C61BB2 /* Pocket Voice-Bridging-Header.h */,
@@ -148,6 +150,15 @@
 				39092F0E1BB7062F001AAB77 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		393447111C628B9C0021BD1D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				39092F161BB7062F001AAB77 /* Main.storyboard */,
+				39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		393D8C0D1C6042F5009457D0 /* Frameworks */ = {
@@ -164,7 +175,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		396684CD1C5FD71000FCE48E /* Views */ = {
+		396684CD1C5FD71000FCE48E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */,
@@ -174,7 +185,7 @@
 				394835601BB9B20B003A60E3 /* LoginViewController.h */,
 				394835611BB9B20B003A60E3 /* LoginViewController.m */,
 			);
-			name = Views;
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		396684CE1C5FD71F00FCE48E /* Model */ = {
@@ -185,6 +196,8 @@
 				396684CF1C5FDA4B00FCE48E /* PocketManager.h */,
 				396684D01C5FDA4B00FCE48E /* PocketManager.m */,
 				395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */,
+				393447121C628BBF0021BD1D /* ReadabilityManager.h */,
+				393447131C628BBF0021BD1D /* ReadabilityManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -330,6 +343,7 @@
 			files = (
 				396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */,
 				394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */,
+				393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */,
 				39092F121BB7062F001AAB77 /* AppDelegate.m in Sources */,
 				39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */,
 				39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */,

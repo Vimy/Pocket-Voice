@@ -12,6 +12,7 @@
 
 @property (copy, nonatomic) NSString *excerpt;
 @property (copy, nonatomic) NSString *url; //given_url
+@property (copy, nonatomic) NSString *domain;
 @property (copy, nonatomic) NSString *title; //resolved title
 @property (copy, nonatomic) NSDate *dateAdded;
 @end

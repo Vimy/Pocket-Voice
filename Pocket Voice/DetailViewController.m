@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "Pocket_Voice-Swift.h"
+#import "ReadabilityManager.h"
 
 
 @interface DetailViewController ()
@@ -26,6 +27,8 @@
 
 }
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -34,20 +37,36 @@
 
 - (IBAction)tappedPlayButton:(UIButton *)sender
 {
-    __block NSData *audioFile;
     
-    WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
-    [ttsManager downloadAudioFromText:self.item.excerpt completionHandler:^(NSData * _Nonnull data)
-     {
-         audioFile = data;
-         NSError *error;
-         self.player = [[AVAudioPlayer alloc] initWithData:audioFile error:&error];
-         [self.player play];
-     }];
+    NSLog(@"url: %@", self.item.url);
+    ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
+    [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSString *response, NSError *error) {
+        if(success)
+        {
+            NSLog(@"De json: %@", response);
+           
+            __block NSData *audioFile;
+            
+            WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
+            [ttsManager downloadAudioFromText:response completionHandler:^(NSData * _Nonnull data)
+             {
+                 audioFile = data;
+                 NSError *error;
+                 self.player = [[AVAudioPlayer alloc] initWithData:audioFile error:&error];
+                 [self.player play];
+             }];
+  
+        }
+        
+    }];
+        
 }
+  
 
 #pragma mark - Navigation
 
 
 
 @end
+
+

@@ -98,7 +98,7 @@
     
     PocketItem *item = [pocketItemsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
-    cell.detailTextLabel.text = item.url;
+    cell.detailTextLabel.text = item.domain;
 
     
     return cell;

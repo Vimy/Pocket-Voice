@@ -28,7 +28,14 @@ import AVFoundation
         tts.synthesize(text) {
             
             data, error in
+            if((data) != nil)
+            {
             completionHandler(musicData: data!)
+            }
+            else
+            {
+                print("WATSONMANAGER",error)
+            }
             
         }
     }
