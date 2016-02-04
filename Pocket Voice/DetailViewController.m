@@ -38,13 +38,16 @@
 - (IBAction)tappedPlayButton:(UIButton *)sender
 {
     
+    //http://stackoverflow.com/questions/8504620/combine-two-wav-files-in-iphone-using-objective-c
+    
     NSLog(@"url: %@", self.item.url);
     ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
     [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSString *response, NSError *error) {
         if(success)
         {
-            NSLog(@"De json: %@", response);
+            NSLog(@"De json -- DETAILVIEWCONTROLLER:  %@", response);
            
+            NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[response length]);
             __block NSData *audioFile;
             
             WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];

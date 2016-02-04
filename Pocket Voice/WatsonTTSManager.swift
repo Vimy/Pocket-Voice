@@ -23,7 +23,8 @@ import AVFoundation
         
         
         
-        let tts = TextToSpeech (username: "", password: "")
+        let tts = TextToSpeech (username: "655d6e5e-c4be-470b-9ef7-e2fdb9fa6f61", password: "09QiDRXdzZn9")
+
         
         tts.synthesize(text) {
             

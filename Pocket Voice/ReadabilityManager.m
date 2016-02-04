@@ -52,6 +52,8 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
     if (jsonDic[@"content"])
     {
         content = [jsonDic valueForKey:@"content"];
+        [self splitNSString:content InStringsofKilobyteSize:5];
+        
     }
     else
     {
@@ -59,6 +61,22 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
     }
    // NSLog(@"Content-log ReadabilityManager.h:%@", content);
     return content;
+}
+
+- (NSMutableArray *)splitNSString:(NSString *)stringToSplit InStringsofKilobyteSize:(int)kbSize
+{
+    NSMutableArray *splittedStrings;
+    NSUInteger bytes = [stringToSplit lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    if ((bytes*1000) > kbSize)
+    {
+        NSLog(@"Bestand is: %lu bytes",(unsigned long)bytes);
+    }
+    
+    //http://stackoverflow.com/questions/7846495/how-to-get-file-size-properly-and-convert-it-to-mb-gb-in-cocoa
+    
+    return splittedStrings;
 }
 
 @end
