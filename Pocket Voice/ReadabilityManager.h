@@ -11,7 +11,7 @@
 
 @interface ReadabilityManager : NSObject
 
-typedef void (^LoadContentCompletionBlock)(BOOL success, NSString *response, NSError *error);
+typedef void (^LoadContentCompletionBlock)(BOOL success, NSMutableArray *response, NSError *error);
 //- (void)loadPocketArticlesWithCallback: (LoadPArticlesCompletionBlock)callback;
 
 - (void)parseWebsiteForContent:(NSString *)url withCallback:(LoadContentCompletionBlock)callback;

@@ -15,7 +15,7 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
 
 @implementation ReadabilityManager
 
-- (void)parseWebsiteForContent:(NSString *)url withCallback:(LoadContentCompletionBlock)callback
+- (void)parseWebsiteForContent:(NSMutableArray *)url withCallback:(LoadContentCompletionBlock)callback
 {
     
     
@@ -35,7 +35,7 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
        
       //  NSLog(@"ResponseObject --ReadabilityManager.h: %@",responseObject);
         jsonObject = responseObject;
-        NSString *content = [self getContentFromJSON:jsonObject];
+        NSMutableArray  *content = [self getContentFromJSON:jsonObject];
         callback(YES,content,nil);
        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -46,13 +46,14 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
 
 }
 
-- (NSString *)getContentFromJSON:(NSDictionary *)jsonDic
+- (NSMutableArray *)getContentFromJSON:(NSDictionary *)jsonDic
 {
     NSString *content;
+    NSMutableArray *contentArray = [NSMutableArray new];
     if (jsonDic[@"content"])
     {
         content = [jsonDic valueForKey:@"content"];
-        [self splitNSString:content InStringsofKilobyteSize:5];
+        contentArray = [self splitText:content byFileSizeLimitInBytes:5000];
         
     }
     else
@@ -60,23 +61,81 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
         content = @"There was an error";
     }
    // NSLog(@"Content-log ReadabilityManager.h:%@", content);
-    return content;
+    return contentArray;
 }
 
-- (NSMutableArray *)splitNSString:(NSString *)stringToSplit InStringsofKilobyteSize:(int)kbSize
+- (NSMutableArray *)splitText:(NSString *)string byFileSizeLimitInBytes:(int)fileSize
 {
-    NSMutableArray *splittedStrings;
-    NSUInteger bytes = [stringToSplit lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+    NSMutableArray *textArray = [NSMutableArray new];
     
-    
-    if ((bytes*1000) > kbSize)
+    if ([string length] > fileSize)
     {
-        NSLog(@"Bestand is: %lu bytes",(unsigned long)bytes);
+        
+        while (![string isEqualToString:@""])
+        {
+            
+            if ([string length] < fileSize)
+            {
+                [textArray addObject:string];
+                break;
+            }
+            else
+            {
+                NSString *sectionString = [string substringToIndex:fileSize];
+                unichar  last = [sectionString  characterAtIndex:[sectionString  length]-1];
+                int x = 0;
+                NSCharacterSet *set =  [NSCharacterSet characterSetWithCharactersInString:@".?!"];
+                
+                while (![set characterIsMember:last])
+                {
+                    
+                    sectionString = [string substringToIndex:(fileSize-x)];
+                    last = [sectionString  characterAtIndex:[sectionString  length]-1];
+                    x++;
+                    
+                }
+                string = [string stringByReplacingOccurrencesOfString:sectionString withString:@""];
+                [textArray addObject:sectionString];
+                
+            }
+        }
+        
+    }
+    else
+    {
+        [textArray addObject:string];
     }
     
-    //http://stackoverflow.com/questions/7846495/how-to-get-file-size-properly-and-convert-it-to-mb-gb-in-cocoa
     
-    return splittedStrings;
+    return textArray;
 }
+
+
+//- (NSMutableArray *)splitNSString:(NSString *)stringToSplit InStringsofKilobyteSize:(int)kbSize
+//{
+//    NSMutableArray *splittedStrings = [NSMutableArray new];
+//    NSUInteger bytes = [stringToSplit lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    
+//    if ((bytes*1000) > kbSize)
+//    {
+//        NSLog(@"Bestand is: %lu bytes",(unsigned long)bytes);
+//        //http://stackoverflow.com/questions/16263720/splist-nsstring-given-a-number-of-characters-in-objective-c
+//        int len=0;
+//        int maxByteSize = kbSize;
+//        
+//        while( (len+maxByteSize)<[stringToSplit length]) {
+//            [splittedStrings addObject:[stringToSplit substringWithRange:NSMakeRange(len,maxByteSize)]];
+//            len+=maxByteSize;
+//        }
+//        
+//        [splittedStrings addObject:[stringToSplit substringFromIndex:len]];
+//        
+//    }
+//    
+//    //http://stackoverflow.com/questions/7846495/how-to-get-file-size-properly-and-convert-it-to-mb-gb-in-cocoa
+//    
+//    return splittedStrings;
+//}
 
 @end

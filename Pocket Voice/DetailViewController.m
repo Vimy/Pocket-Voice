@@ -40,25 +40,51 @@
     
     //http://stackoverflow.com/questions/8504620/combine-two-wav-files-in-iphone-using-objective-c
     
+    NSString *applicationDocumentsDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject].absoluteString ;
+    NSString *storePath = [applicationDocumentsDir stringByAppendingPathComponent:@"audio.wav"];
+    
+    __block NSMutableArray *audioItems = [NSMutableArray new];
+    
+    
     NSLog(@"url: %@", self.item.url);
     ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
-    [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSString *response, NSError *error) {
+    [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
         if(success)
         {
-            NSLog(@"De json -- DETAILVIEWCONTROLLER:  %@", response);
+           // NSLog(@"De json -- DETAILVIEWCONTROLLER:  %@", response);
            
-            NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[response length]);
-            __block NSData *audioFile;
+            NSString *string;
+            for (NSString *content in response)
+            {
+                NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[content length]);
+                NSLog(@"---------------------");
+                NSLog(@"---------------------");
+                NSLog(@"---------------------");
+                NSLog(@"---------------------");
+                NSLog(@"---------------------");
+                NSLog(@"---------------------");
+                NSLog(@"---------------------");
+                NSLog(@"%@", content);
+                string = content;
+            }
             
+            
+        
+              __block NSData *audioFile;
             WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
-            [ttsManager downloadAudioFromText:response completionHandler:^(NSData * _Nonnull data)
+            [ttsManager downloadAudioFromText:string completionHandler:^(NSData * _Nonnull data)
              {
                  audioFile = data;
                  NSError *error;
+                 [audioFile writeToFile:storePath atomically: YES];
+                 NSURL *filepath = [NSURL fileURLWithPath:storePath];
+                 AVPlayerItem *player = [AVPlayerItem playerItemWithURL:filepath];
+                 [audioItems addObject:player];
+                 
+                 
                  self.player = [[AVAudioPlayer alloc] initWithData:audioFile error:&error];
                  [self.player play];
              }];
-  
         }
         
     }];
