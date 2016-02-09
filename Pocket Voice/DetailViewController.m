@@ -43,54 +43,100 @@
     NSString *applicationDocumentsDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject].absoluteString ;
     NSString *storePath = [applicationDocumentsDir stringByAppendingPathComponent:@"audio.wav"];
     
+    __block NSData *audioData;
     __block NSMutableArray *audioItems = [NSMutableArray new];
+     __block NSMutableArray *audioFiles = [NSMutableArray new];
+    
     
     
     NSLog(@"url: %@", self.item.url);
-    ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
+    
+     dispatch_queue_t queue = dispatch_queue_create("audio fetcher", NULL);
+    
+    //dispatch_async(queue, ^{
+        ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
     [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
         if(success)
         {
-           // NSLog(@"De json -- DETAILVIEWCONTROLLER:  %@", response);
+         
+            WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
            
-            NSString *string;
+            
             for (NSString *content in response)
             {
+                
+                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                    
                 NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[content length]);
-                NSLog(@"---------------------");
-                NSLog(@"---------------------");
-                NSLog(@"---------------------");
-                NSLog(@"---------------------");
-                NSLog(@"---------------------");
-                NSLog(@"---------------------");
-                NSLog(@"---------------------");
-                NSLog(@"%@", content);
-                string = content;
+       
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    @autoreleasepool
+                    {
+                        [ttsManager downloadAudioFromText:@"Hoi" completionHandler:^(NSData * _Nonnull data)
+                         {
+                             
+                             audioData = data;
+                             if (!audioData)
+                             {
+                                 NSLog(@"data leeg??");
+                             }
+                             [audioFiles addObject:audioData];
+                            // NSLog(@"Inhoud: %@", [audioFiles description]);
+                             NSLog(@"Nu voegen we data toe!");
+                             NSLog(@"Number of items: %lu", (unsigned long)[audioFiles count]);
+                             
+                             
+                         }];
+                    }
+      
+                     dispatch_semaphore_signal(semaphore);
+                });
+                
+          
+                
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+       
+              
+                
+                for (NSData *audioObject in audioFiles)
+                {
+                    NSLog(@"Hallo");
+                    
+                    [audioObject writeToFile:storePath atomically: YES];
+                    NSURL *filepath = [NSURL fileURLWithPath:storePath];
+                    AVPlayerItem *avItem = [AVPlayerItem playerItemWithURL:filepath];
+                    [audioItems addObject:avItem];
+                }
+                
+                AVQueuePlayer *player = [[AVQueuePlayer alloc]initWithItems:audioItems];
+                [player play];
+                
+                dispatch_semaphore_signal(semaphore);
             }
             
+         
+
+     
+            
+//
+//            self.player = [[AVAudioPlayer alloc] initWithData:audioFile error:&error];
+//            [self.player play];
             
         
-              __block NSData *audioFile;
-            WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
-            [ttsManager downloadAudioFromText:string completionHandler:^(NSData * _Nonnull data)
-             {
-                 audioFile = data;
-                 NSError *error;
-                 [audioFile writeToFile:storePath atomically: YES];
-                 NSURL *filepath = [NSURL fileURLWithPath:storePath];
-                 AVPlayerItem *player = [AVPlayerItem playerItemWithURL:filepath];
-                 [audioItems addObject:player];
-                 
-                 
-                 self.player = [[AVAudioPlayer alloc] initWithData:audioFile error:&error];
-                 [self.player play];
-             }];
+          
+                              
+            
+    
         }
         
-    }];
         
+    }];
+// dispatch_sync(dispatch_get_main_queue(), ^{
+//    
+// });
+   // });
 }
-  
+
 
 #pragma mark - Navigation
 

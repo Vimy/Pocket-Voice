@@ -76,7 +76,8 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
             
             if ([string length] < fileSize)
             {
-                [textArray addObject:string];
+              
+                [textArray addObject:[self stripHtmlFromString:string]];
                 break;
             }
             else
@@ -95,7 +96,8 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
                     
                 }
                 string = [string stringByReplacingOccurrencesOfString:sectionString withString:@""];
-                [textArray addObject:sectionString];
+                
+                [textArray addObject:[self stripHtmlFromString:sectionString]];
                 
             }
         }
@@ -108,6 +110,18 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
     
     
     return textArray;
+}
+- (NSString *)stripHtmlFromString:(NSString *)string
+{
+    NSAttributedString *attr = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
+                                                                options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                                          NSCharacterEncodingDocumentAttribute:@(NSUTF8StringEncoding)}
+                                                     documentAttributes:nil
+                                                                  error:nil];
+ 
+    
+    NSString *finalString = [attr string];
+    return finalString;
 }
 
 
