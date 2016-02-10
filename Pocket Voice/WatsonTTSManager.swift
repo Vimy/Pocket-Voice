@@ -31,7 +31,7 @@ import AVFoundation
             data, error in
             if((data) != nil)
             {
-            completionHandler(musicData: data!)
+                completionHandler(musicData: data!)
             }
             else
             {

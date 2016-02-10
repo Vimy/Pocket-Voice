@@ -18,6 +18,12 @@
 @end
 
 @implementation DetailViewController
+{
+    __block NSData *audioData;
+    __block NSMutableArray *audioItems;
+    __block NSMutableArray *audioFiles;
+ 
+}
 
 - (void)viewDidLoad
 {
@@ -39,104 +45,103 @@
 {
     
     //http://stackoverflow.com/questions/8504620/combine-two-wav-files-in-iphone-using-objective-c
+  
+    
+    
+    audioItems = [NSMutableArray new];
+    audioFiles = [NSMutableArray new];
+    NSLog(@"url: %@", self.item.url);
+
+  //  dispatch_queue_t getContent = dispatch_queue_create("parse website content", NULL);
+
+    
+    ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
+    [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
+        if(success)
+        {
+            
+                [self downloadAudio:response];
+           
+           
+          
+            NSLog(@"Is a great succes!");
+        }
+        else
+        {
+            NSLog(@"Error");
+        }
+    }];
+}
+
+- (void)downloadAudio:(NSMutableArray *)textArray
+{
+    WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
+    
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    
+    dispatch_queue_t getAudio = dispatch_queue_create("parse website content", NULL);
+    dispatch_queue_t serialQueue = dispatch_queue_create("com.pocketvoice.queue", DISPATCH_QUEUE_SERIAL);
+
+    NSLog(@"Heykes");
+   
+     __block int i = 1;
+        for (NSString *content in textArray)
+    {
+        //  dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        
+        NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[content length]);
+        NSLog(@"CONTENT :%@", content);
+        dispatch_async(serialQueue, ^{[ttsManager downloadAudioFromText:content completionHandler:^(NSData * _Nonnull data)
+         {
+             audioData = data;
+             if (!audioData)
+             {
+                 NSLog(@"data leeg??");
+             }
+             if (i < [textArray count])
+             {
+                 i += 1;
+             }
+             else
+             {
+                 [self playAudio];
+             }
+             // NSLog(@"Inhoud: %@", [audioFiles description]);
+             NSLog(@"Nu voegen we data toe!");
+             NSLog(@"Number of items: %lu", (unsigned long)[audioFiles count]);
+             [audioFiles addObject:audioData];
+           // dispatch_semaphore_signal(sema);
+         }];
+        });
+       // dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+      
+        NSLog(@"Test");
+    }
+    
+    
+}
+
+
+- (void)playAudio
+{
     
     NSString *applicationDocumentsDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject].absoluteString ;
     NSString *storePath = [applicationDocumentsDir stringByAppendingPathComponent:@"audio.wav"];
     
-    __block NSData *audioData;
-    __block NSMutableArray *audioItems = [NSMutableArray new];
-     __block NSMutableArray *audioFiles = [NSMutableArray new];
+    for (NSData *audioObject in audioFiles)
+    {
+        NSLog(@"Hallo");
+        
+        [audioObject writeToFile:storePath atomically: YES];
+        NSURL *filepath = [NSURL fileURLWithPath:storePath];
+        AVPlayerItem *avItem = [AVPlayerItem playerItemWithURL:filepath];
+        [audioItems addObject:avItem];
+    }
     
-    
-    
-    NSLog(@"url: %@", self.item.url);
-    
-     dispatch_queue_t queue = dispatch_queue_create("audio fetcher", NULL);
-    
-    //dispatch_async(queue, ^{
-        ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
-    [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
-        if(success)
-        {
-         
-            WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
-           
-            
-            for (NSString *content in response)
-            {
-                
-                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                    
-                NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[content length]);
-       
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    @autoreleasepool
-                    {
-                        [ttsManager downloadAudioFromText:@"Hoi" completionHandler:^(NSData * _Nonnull data)
-                         {
-                             
-                             audioData = data;
-                             if (!audioData)
-                             {
-                                 NSLog(@"data leeg??");
-                             }
-                             [audioFiles addObject:audioData];
-                            // NSLog(@"Inhoud: %@", [audioFiles description]);
-                             NSLog(@"Nu voegen we data toe!");
-                             NSLog(@"Number of items: %lu", (unsigned long)[audioFiles count]);
-                             
-                             
-                         }];
-                    }
-      
-                     dispatch_semaphore_signal(semaphore);
-                });
-                
-          
-                
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-       
-              
-                
-                for (NSData *audioObject in audioFiles)
-                {
-                    NSLog(@"Hallo");
-                    
-                    [audioObject writeToFile:storePath atomically: YES];
-                    NSURL *filepath = [NSURL fileURLWithPath:storePath];
-                    AVPlayerItem *avItem = [AVPlayerItem playerItemWithURL:filepath];
-                    [audioItems addObject:avItem];
-                }
-                
-                AVQueuePlayer *player = [[AVQueuePlayer alloc]initWithItems:audioItems];
-                [player play];
-                
-                dispatch_semaphore_signal(semaphore);
-            }
-            
-         
+    AVQueuePlayer *player = [[AVQueuePlayer alloc]initWithItems:audioItems];
+    [player play];
 
-     
-            
-//
-//            self.player = [[AVAudioPlayer alloc] initWithData:audioFile error:&error];
-//            [self.player play];
-            
-        
-          
-                              
-            
-    
-        }
-        
-        
-    }];
-// dispatch_sync(dispatch_get_main_queue(), ^{
-//    
-// });
-   // });
 }
-
 
 #pragma mark - Navigation
 
