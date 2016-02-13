@@ -11,6 +11,7 @@
 #import <PocketAPI.h>
 #import "DetailViewController.h"
 #import "PocketManager.h"
+#import "ReadabilityManager.h"
 
 
 @interface ArticlesListTableViewController ()
@@ -34,31 +35,44 @@
     
     PocketManager *manager = [[PocketManager alloc]init];
 
-   
-
-    [manager loadPocketArticlesWithCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
-        if (success)
-        {
-            NSLog(@"Maggie^Block");
-            pocketItemsArray = response;
-            [self.tableView reloadData];
-        }
-        else
-        {
-            UIAlertController *warning = [UIAlertController
-                                          alertControllerWithTitle:@"Error"
-                                          message:@"Couldn't load Pocket Articles."
-                                          preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *ok = [UIAlertAction
-                                 actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * _Nonnull action) {
-                                     [warning dismissViewControllerAnimated:YES completion:nil];
-                                 }];
-            [warning addAction:ok];
-            [self presentViewController:warning animated:YES completion:nil];
-        }
-    }];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = self.view.center;
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     
+    dispatch_queue_t downloadArticles = dispatch_queue_create("downloadArticles", NULL);
+
+    dispatch_async(downloadArticles, ^{
+        [manager loadPocketArticlesWithCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
+            if (success)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Maggie^Block");
+                    pocketItemsArray = response;
+                    [spinner stopAnimating];
+                    [self.tableView reloadData];
+                });
+                
+               
+            }
+            else
+            {
+                UIAlertController *warning = [UIAlertController
+                                              alertControllerWithTitle:@"Error"
+                                              message:@"Couldn't load Pocket Articles."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *ok = [UIAlertAction
+                                     actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * _Nonnull action) {
+                                         [warning dismissViewControllerAnimated:YES completion:nil];
+                                     }];
+                [warning addAction:ok];
+                [self presentViewController:warning animated:YES completion:nil];
+            }
+        }];
+
+    });
     
 
     // Uncomment the following line to preserve selection between presentations.
@@ -85,10 +99,6 @@
 {
     
     return [pocketItemsArray count];
-    //NSLog(@"De count is :%lu",[[pocketItemsDic valueForKey:@"list" ] count]);
-   
-    
-    // return [[pocketItemsDic valueForKey:@"list"  ] count];
 }
 
 
@@ -128,11 +138,11 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DetailViewController *detail = segue.destinationViewController;
         detail.item = [pocketItemsArray objectAtIndex:indexPath.row];
+     
     }
     
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
+
 
 /*
 // Override to support conditional editing of the table view.

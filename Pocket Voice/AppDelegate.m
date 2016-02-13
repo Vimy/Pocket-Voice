@@ -21,8 +21,6 @@
 
     NSString *storyboardId = [[PocketAPI sharedAPI] isLoggedIn] ? @"articlesListVC" : @"loginVC";
     self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:storyboardId];
-
-    
     return YES;
 }
 
@@ -33,6 +31,7 @@
 {
     
     if([[PocketAPI sharedAPI] handleOpenURL:url]){
+      //  self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"articlesListVC"];
         return YES;
     }else{
         // if you handle your own custom url-schemes, do it here
@@ -55,7 +54,11 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    NSString *storyboardId = [[PocketAPI sharedAPI] isLoggedIn] ? @"articlesListVC" : @"loginVC";
+    self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:storyboardId];
+
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

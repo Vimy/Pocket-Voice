@@ -47,7 +47,7 @@
                                      for (id key in keys)
                                      {
                                          NSDictionary *ArticleDic = [pocketItemsDic valueForKey:key];
-                                      //   NSLog(@"Dit is de dic: %@", ArticleDic);
+                                        NSLog(@"Dit is de dic: %@", ArticleDic);
                                          //[pocketItemsArray addObject:[ArticleDic valueForKeyPath:@"given_title"]];
                                          PocketItem *item = [[PocketItem alloc]init];
                                          item.url = [ArticleDic valueForKeyPath:@"given_url"];
@@ -66,7 +66,6 @@
                                      NSMutableArray *sortDescriptors = [[NSMutableArray alloc]initWithObjects:dateDescriptor, nil];
                                      pocketItemsArray = (NSMutableArray *)[pocketItemsUnsorted
                                                                            sortedArrayUsingDescriptors:sortDescriptors];
-                                     //[self.tableView reloadData];
                                        callback(YES,pocketItemsArray,nil);
                                  }];
     //http://blog.mobilejazz.com/ios-using-kvc-to-parse-json/
@@ -92,10 +91,6 @@
     double unixTimeStamp =timeStamp;
     NSTimeInterval _interval=unixTimeStamp;
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
-    //    NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
-    //    [formatter setLocale:[NSLocale currentLocale]];
-    //    [formatter setDateFormat:@"dd.MM.yyyy"];
-    //    NSString *dateString = [formatter stringFromDate:date];
     return date;
 }
 

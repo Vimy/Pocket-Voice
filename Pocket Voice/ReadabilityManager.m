@@ -53,7 +53,7 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
     if (jsonDic[@"content"])
     {
         content = [jsonDic valueForKey:@"content"];
-        contentArray = [self splitText:content byFileSizeLimitInBytes:5000];
+        contentArray = [self splitText:content byFileSizeLimitInBytes:2500];
         
     }
     else
@@ -124,32 +124,5 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
     return finalString;
 }
 
-
-//- (NSMutableArray *)splitNSString:(NSString *)stringToSplit InStringsofKilobyteSize:(int)kbSize
-//{
-//    NSMutableArray *splittedStrings = [NSMutableArray new];
-//    NSUInteger bytes = [stringToSplit lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    
-//    if ((bytes*1000) > kbSize)
-//    {
-//        NSLog(@"Bestand is: %lu bytes",(unsigned long)bytes);
-//        //http://stackoverflow.com/questions/16263720/splist-nsstring-given-a-number-of-characters-in-objective-c
-//        int len=0;
-//        int maxByteSize = kbSize;
-//        
-//        while( (len+maxByteSize)<[stringToSplit length]) {
-//            [splittedStrings addObject:[stringToSplit substringWithRange:NSMakeRange(len,maxByteSize)]];
-//            len+=maxByteSize;
-//        }
-//        
-//        [splittedStrings addObject:[stringToSplit substringFromIndex:len]];
-//        
-//    }
-//    
-//    //http://stackoverflow.com/questions/7846495/how-to-get-file-size-properly-and-convert-it-to-mb-gb-in-cocoa
-//    
-//    return splittedStrings;
-//}
 
 @end

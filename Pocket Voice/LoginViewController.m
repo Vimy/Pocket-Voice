@@ -23,26 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    NSError* errorJSON;
-//    NSArray *actions = @[@{ @"count": @"10", @"detailType": @"complete" }];
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject: actions
-//                                                       options: kNilOptions
-//                                                         error: &errorJSON];
-//    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding: NSUTF8StringEncoding];
-//    
-//    NSDictionary* argumentDictionary = @{@"actions":jsonString};
-//    
-//    [[PocketAPI sharedAPI] callAPIMethod:@"get"
-//                          withHTTPMethod:PocketAPIHTTPMethodPOST
-//                               arguments:argumentDictionary
-//                                 handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error){
-//                               //      pocketItemsDic = [response copy];
-//                                     NSLog(@"response Original %@", [response description]);
-//                                 //    NSLog(@"response %@", [pocketItemsDic description]);
-//                                     NSLog(@"error %@", [error localizedDescription]);
-//                                 }];
 
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

@@ -13,5 +13,6 @@
 @interface DetailViewController : UIViewController <AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) PocketItem *item;
+@property (strong, nonatomic) NSMutableArray *pocketArticles;
 
 @end
