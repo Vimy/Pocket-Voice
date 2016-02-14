@@ -16,6 +16,7 @@
     NSMutableArray *pocketItemsArray;
     NSDictionary *pocketItemsDic;
     NSString *path;
+    NSUserDefaults *defaults;
 }
 
 - (id)init
@@ -26,6 +27,7 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         path = [documentsDirectory stringByAppendingPathComponent:@"PocketArticles.json"];
+        defaults = [NSUserDefaults standardUserDefaults];
     }
     return self;
 }
@@ -46,54 +48,67 @@
         }
         else
         {
-            NSError* errorJSON;
-            NSArray *actions = @[@{ @"count": @"10", @"detailType": @"complete" }];
-            NSData *jsonData = [NSJSONSerialization dataWithJSONObject: actions
-                                                               options: kNilOptions
-                                                                 error: &errorJSON];
-            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding: NSUTF8StringEncoding];
-            
-            NSDictionary* argumentDictionary = @{@"actions":jsonString};
-            
-            [[PocketAPI sharedAPI] callAPIMethod:@"get"
-                                  withHTTPMethod:PocketAPIHTTPMethodPOST
-                                       arguments:argumentDictionary
-                                         handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error)
-                                        {
-                                             
-                                             pocketItemsArray = [self putJSONInObjects:response];
-                                            
-                                            NSError * err;
-                                            NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:response options:0 error:&err];
-                                            NSString * jsonString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
-                                            [self writeStringToFile:jsonString];
-                                             callback(YES,pocketItemsArray,nil);
-                                          
-                                         }];
+           [self pocketNetworkCall:^(NSMutableArray *pocketArray)
+            {
+                NSLog(@"Loading articles");
+                callback(YES,pocketArray,nil);
+            }];
+          
+           
         }
-        
-    
+    //http://blog.mobilejazz.com/ios-using-kvc-to-parse-json/
+   
+}
 
+- (void)reloadPocketArticlesWithCallback:(LoadPArticlesCompletionBlock)callback
+{
+    [self pocketNetworkCall:^(NSMutableArray *pocketArray)
+     {
+         NSLog(@"Reloading articles");
+         callback(YES,pocketArray,nil);
+     }];
     
+}
+
+- (void)pocketNetworkCall:(void(^)(NSMutableArray *pocketArray))completion
+{
+    NSError* errorJSON;
+    NSString *detailTypeString = [defaults objectForKey:@"timestamp"] ? @"since" : @"complete";
+    NSArray *actions = @[@{ @"count": @"10", @"detailType": detailTypeString }];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject: actions
+                                                       options: kNilOptions
+                                                         error: &errorJSON];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding: NSUTF8StringEncoding];
     
+    NSDictionary* argumentDictionary = @{@"actions":jsonString};
     
+    [[PocketAPI sharedAPI] callAPIMethod:@"get"
+                          withHTTPMethod:PocketAPIHTTPMethodPOST
+                               arguments:argumentDictionary
+                                 handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error)
+     {
+         NSLog(@"JSON: %@", response);
+         NSNumber *timeStamp = [response valueForKeyPath:@"since"];
+         [self saveLastTimeSincePocketUpdate:timeStamp];
+         pocketItemsArray = [self putJSONInObjects:response];
+         
+         NSError * err;
+         NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:response options:0 error:&err];
+         NSString * jsonString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
+         [self writeStringToFile:jsonString];
+         completion(pocketItemsArray);
+         
+     }];
+
+}
+
+
+
+- (void)saveLastTimeSincePocketUpdate:(NSNumber *)timestamp
+{
     
-    
-    
-    
-    
-    
-    
-    
-    
-        //http://blog.mobilejazz.com/ios-using-kvc-to-parse-json/
-    
-  
-    
-    
-    
-    
-    
+    [defaults setObject:timestamp forKey:@"timestamp"];
+    [defaults synchronize];
 }
 
 - (NSMutableArray *)putJSONInObjects:(NSDictionary *)response

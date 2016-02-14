@@ -12,6 +12,7 @@
 
 
 typedef void (^LoadPArticlesCompletionBlock)(BOOL success, NSMutableArray *response, NSError *error);
-- (void)loadPocketArticlesWithCallback: (LoadPArticlesCompletionBlock)callback;
+- (void)loadPocketArticlesWithCallback:(LoadPArticlesCompletionBlock)callback;
+- (void)reloadPocketArticlesWithCallback:(LoadPArticlesCompletionBlock)callback;
 
 @end

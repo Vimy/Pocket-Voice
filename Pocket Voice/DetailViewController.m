@@ -37,7 +37,7 @@
     [super viewDidLoad];
     self.title = self.item.title;
     [self.player setDelegate:self];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO ;//textview has whitespace otherwise
     self.currentPlayTime.text = @"0:01";
     
     // Customization for play slider

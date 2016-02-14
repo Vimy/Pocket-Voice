@@ -18,6 +18,7 @@
 {
     NSMutableArray *pocketItemsArray;
     NSDictionary *pocketItemsDic;
+    PocketManager *manager;
 }
 @end
 //https://github.com/watson-developer-cloud/ios-sdk/blob/master/Quickstart.md
@@ -43,10 +44,18 @@
     self.navigationController.hidesBarsOnSwipe = TRUE;
     
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor grayColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadData)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    
     
     dispatch_queue_t downloadArticles = dispatch_queue_create("downloadArticles", NULL);
     dispatch_async(downloadArticles, ^{
-        PocketManager *manager = [[PocketManager alloc]init];
+        manager = [[PocketManager alloc]init];
         [manager loadPocketArticlesWithCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
             if (success)
             {
@@ -88,6 +97,52 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadData
+{
+    [manager reloadPocketArticlesWithCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
+        if (success)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"reloading");
+                pocketItemsArray = response;
+                [self.tableView reloadData];
+            });
+            
+        }
+        else
+        {
+            UIAlertController *warning = [UIAlertController
+                                          alertControllerWithTitle:@"Error"
+                                          message:@"Couldn't load Pocket Articles."
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction
+                                 actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     [warning dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+            [warning addAction:ok];
+            [self presentViewController:warning animated:YES completion:nil];
+        }
+
+    }];
+    
+
+    
+    // End the refreshing
+    if (self.refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+        
+        [self.refreshControl endRefreshing];
+    }
 }
 
 #pragma mark - Table view data source
