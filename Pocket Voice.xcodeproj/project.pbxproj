@@ -16,6 +16,8 @@
 		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
 		393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 393447131C628BBF0021BD1D /* ReadabilityManager.m */; };
 		393715221C5ED14500CFD16A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393715211C5ED14500CFD16A /* DetailViewController.m */; };
+		39374D221C6F92CD00ADB193 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		39374D231C6F92CD00ADB193 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		393D8C151C604794009457D0 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C0E1C604794009457D0 /* Alamofire.framework */; };
 		393D8C161C604794009457D0 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */; };
 		393D8C171C604794009457D0 /* HTTPStatusCodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 393D8C101C604794009457D0 /* HTTPStatusCodes.framework */; };
@@ -34,6 +36,7 @@
 		395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */; };
 		396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 396684D01C5FDA4B00FCE48E /* PocketManager.m */; };
 		39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */; };
+		EA4C5F76EAD133271470DEDB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3289441E480D48FCA48069 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,6 +91,7 @@
 		39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketItem.m; sourceTree = "<group>"; };
 		499AE7A6C3E8B6133690D58C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B941D383516E7C9E3358E3FE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CA3289441E480D48FCA48069 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 				393D8C151C604794009457D0 /* Alamofire.framework in Frameworks */,
 				393D8C1A1C604794009457D0 /* WatsonDeveloperCloud.framework in Frameworks */,
 				393D8C171C604794009457D0 /* HTTPStatusCodes.framework in Frameworks */,
+				EA4C5F76EAD133271470DEDB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +176,7 @@
 				393D8C121C604794009457D0 /* Starscream.framework */,
 				393D8C131C604794009457D0 /* WatsonDeveloperCloud.framework */,
 				393D8C141C604794009457D0 /* XCGLogger.framework */,
+				CA3289441E480D48FCA48069 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -346,10 +352,12 @@
 				393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */,
 				39092F121BB7062F001AAB77 /* AppDelegate.m in Sources */,
 				39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */,
+				39374D231C6F92CD00ADB193 /* (null) in Sources */,
 				39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */,
 				395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */,
 				39092F0F1BB7062F001AAB77 /* main.m in Sources */,
 				393715221C5ED14500CFD16A /* DetailViewController.m in Sources */,
+				39374D221C6F92CD00ADB193 /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

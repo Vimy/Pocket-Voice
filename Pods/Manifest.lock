@@ -15,13 +15,16 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - PocketAPI (1.0.3)
+  - SwiftSpinner (0.8.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - PocketAPI
+  - SwiftSpinner
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   PocketAPI: 561fd4f428a38a4662c5837247c85f9962393f01
+  SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
 
 COCOAPODS: 0.39.0

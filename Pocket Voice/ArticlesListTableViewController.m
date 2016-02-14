@@ -8,10 +8,10 @@
 
 #import "ArticlesListTableViewController.h"
 #import "PocketItem.h"
-#import <PocketAPI.h>
+#import "PocketAPI.h"
 #import "DetailViewController.h"
 #import "PocketManager.h"
-#import "ReadabilityManager.h"
+
 
 
 @interface ArticlesListTableViewController ()
@@ -33,17 +33,20 @@
 {
     [super viewDidLoad];
     
-    PocketManager *manager = [[PocketManager alloc]init];
-
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = self.view.center;
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
+    
+    self.navigationController.hidesBarsOnSwipe = TRUE;
+    
+    
+    
     dispatch_queue_t downloadArticles = dispatch_queue_create("downloadArticles", NULL);
-
     dispatch_async(downloadArticles, ^{
+        PocketManager *manager = [[PocketManager alloc]init];
         [manager loadPocketArticlesWithCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
             if (success)
             {
@@ -53,8 +56,7 @@
                     [spinner stopAnimating];
                     [self.tableView reloadData];
                 });
-                
-               
+  
             }
             else
             {

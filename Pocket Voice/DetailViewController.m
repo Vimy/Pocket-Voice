@@ -11,10 +11,16 @@
 #import "ReadabilityManager.h"
 
 
+
 @interface DetailViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic)   AVQueuePlayer *playerQueue;
 @property (strong, nonatomic)   AVAudioPlayer *player;
+@property (strong, nonatomic) IBOutlet UISlider *audioSlider;
+@property (strong, nonatomic) IBOutlet UILabel *totalPlayTime;
+@property (strong, nonatomic) IBOutlet UILabel *currentPlayTime;
+@property (strong, nonatomic) NSMutableArray *audioResponse;
+@property (nonatomic, strong) NSTimer* timer;
 
 @end
 
@@ -32,6 +38,15 @@
     self.title = self.item.title;
     [self.player setDelegate:self];
     
+    self.currentPlayTime.text = @"0:01";
+    
+    // Customization for play slider
+    self.audioSlider.minimumTrackTintColor = [UIColor blackColor];
+    self.audioSlider.maximumTrackTintColor = [UIColor blackColor];
+    UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.audioSlider setThumbImage:image forState:UIControlStateNormal];
+    
+    
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = self.view.center;
     spinner.hidesWhenStopped = YES;
@@ -47,6 +62,7 @@
         if(success)
         {
            dispatch_async(dispatch_get_main_queue(), ^{
+               self.audioResponse = response;
             self.textView.text = [self putTextTogether:response];
             [spinner stopAnimating];
            });
@@ -61,7 +77,7 @@
    
   //  self.navigationController.hidesBarsOnSwipe = TRUE;
     
-    
+    //http://stackoverflow.com/questions/22317353/concat-two-audio-files-one-after-another-ios
     
     //https://developer.ibm.com/answers/questions/252450/ios-error-using-text-to-speech-invalid-value-aroun.html
     //http://eppz.eu/blog/uiview-from-xib/
@@ -75,37 +91,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+    
+
+
 - (IBAction)tappedPlayButton:(UIButton *)sender
 {
     
     //http://stackoverflow.com/questions/8504620/combine-two-wav-files-in-iphone-using-objective-c
+
   
-    
+  
     
     audioItems = [NSMutableArray new];
     audioFiles = [NSMutableArray new];
     NSLog(@"url: %@", self.item.url);
 
-  //  dispatch_queue_t getContent = dispatch_queue_create("parse website content", NULL);
+    [self downloadAudio:self.audioResponse];
 
     
-//    ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
-//    [contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSMutableArray *response, NSError *error) {
-//        if(success)
-//        {
-//            
-//            self.textView.text = [self putTextTogether:response];
-//            [self downloadAudio:response];
-//           
-//           
-//          
-//            NSLog(@"Is a great succes!");
-//        }
-//        else
-//        {
-//            NSLog(@"Error");
-//        }
-//    }];
 }
 
 - (NSString *)putTextTogether:(NSMutableArray *)textArray
@@ -129,42 +133,53 @@
     dispatch_queue_t serialQueue = dispatch_queue_create("com.pocketvoice.queue", DISPATCH_QUEUE_SERIAL);
 
     NSLog(@"Heykes");
-   
-     __block int i = 1;
-        for (NSString *content in textArray)
+   //https://github.com/BoltsFramework/Bolts-ObjC
+     __block int runningRequests = 0;
+   // __block NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    
+    for (NSString *content in textArray)
     {
          // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        
-        NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[content length]);
-        NSLog(@"CONTENT :%@", content);
-        dispatch_async(serialQueue, ^{[ttsManager downloadAudioFromText:content completionHandler:^(NSData * _Nonnull data)
+        runningRequests++;
+       // NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[content length]);
+       // NSLog(@"CONTENT :%@", content);
+        [ttsManager downloadAudioFromText:content completionHandler:^(NSData * _Nonnull data)
          {
              NSLog(@"Count TextArray: %lu", (unsigned long)[textArray count]);
-             NSLog(@"Ronde nummer: %i", i);
-             audioData = data;
+             NSLog(@"Ronde nummer: %i", runningRequests);
+            audioData = data;
             if (!audioData)
              {
                  NSLog(@"data leeg??");
-             }
-             if (i < [textArray count])
-             {
-                 i++;
+                 
              }
              else
              {
-                 [self concatenateAudioFiles:audioFiles];
-                 //[self playAudio];
+                 // NSLog(@"Inhoud: %@", [audioFiles description]);
+               //  NSLog(@"Nu voegen we data toe!");
+                [audioFiles addObject:audioData];
+                 NSLog(@"Number of items: %lu", (unsigned long)[audioFiles count]);
+                 //[dic setObject:audioData forKey:[NSNumber numberWithInt:runningRequests]];
+               
+                 runningRequests--;
+                 if (runningRequests == 0)
+                 {
+//                     NSArray *sorted = [[dic allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+//                         return [[dic objectForKey:obj1] compare:[dic objectForKey:obj2]];
+//                     }];
+                     
+                     [self concatenateAudioFiles:audioFiles];
+                     
+                     
+                     
+                 }
              }
-             // NSLog(@"Inhoud: %@", [audioFiles description]);
-             NSLog(@"Nu voegen we data toe!");
-             NSLog(@"Number of items: %lu", (unsigned long)[audioFiles count]);
-             [audioFiles addObject:audioData];
         //    dispatch_semaphore_signal(sema);
          }];
-        });
+       
       //  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
       
-        NSLog(@"Test");
+       
     }
     
     
@@ -174,99 +189,73 @@
 }
 
 
-- (void)concatenateAudioFiles:(NSMutableArray *)audioFiles
+- (void)concatenateAudioFiles:(NSMutableArray *)audioFile
 {
     NSError *error;
+
     
     AVMutableComposition *composition = [AVMutableComposition composition];
     AVMutableCompositionTrack *newAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
     
     NSArray * dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    // NSString *applicationDocumentsDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject].absoluteString ;
-    NSString *storePath = [docsDir stringByAppendingPathComponent:@"audio.wav"];
-    
-    NSUInteger count = 0;
-    CMTime time;
-    CMTime previousTrackDuration;
-    CMTime totalTrackDuration;
-       for (NSData *audioObject in audioFiles)
+  
+    CMTime nextClipStartTime = kCMTimeZero;
+    int i = 1;
+    for (NSData *audioObject in audioFile)
     {
-        NSLog(@"Hallo");
         
+        NSString *storePath = [docsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"audio%i.wav", i]];
         [audioObject writeToFile:storePath atomically: YES];
         NSURL *filepath = [NSURL fileURLWithPath:storePath];
         AVURLAsset *firstComponent = [[AVURLAsset alloc] initWithURL:filepath options:nil];
-        
-        
         NSArray *firstTrack = [firstComponent tracksWithMediaType:AVMediaTypeAudio];
-        if (!firstTrack)
-        {
-            NSLog(@"lege firstTrack");
-            
-        }
-        else
-        {
-            if (count == 0)
-            {
-                time = kCMTimeZero;
-            }
-            else
-            {
-                
-                totalTrackDuration = CMTimeAdd(previousTrackDuration, firstComponent.duration);
-                time = totalTrackDuration;
-            }
-            
-            CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, firstComponent.duration);
-            [newAudioTrack insertTimeRange:timeRange
-                                   ofTrack:firstTrack.firstObject
-                                    atTime:time
-                                     error:&error];
-
-            
-            previousTrackDuration = firstComponent.duration;
-        }
-        count++;
-      
+        CMTimeRange timeRange = CMTimeRangeMake(kCMTimeZero, firstComponent.duration);
+        [newAudioTrack insertTimeRange:timeRange ofTrack:firstTrack.firstObject atTime:nextClipStartTime error:&error];
+        nextClipStartTime = CMTimeAdd(nextClipStartTime, timeRange.duration);
+        i++;
     }
+    
+      
+    
     
     finalAudioPath = [docsDir stringByAppendingPathComponent: @"audio.m4a"];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:finalAudioPath])
-    {
-        [fileManager removeItemAtPath:finalAudioPath error:&error];
-        NSError *error;
-        if ([fileManager removeItemAtPath:finalAudioPath error:&error] == NO)
-        {
-            NSLog(@"removeItemAtPath %@ error:%@", finalAudioPath, error);
+    
+    
+    NSError *fileError;
+    if ([[NSFileManager defaultManager] isDeletableFileAtPath:finalAudioPath]) {
+        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:finalAudioPath error:&error];
+        if (!success) {
+            NSLog(@"Error removing file at path: %@", fileError.localizedDescription);
         }
-        
     }
     
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    if ([fileManager fileExistsAtPath:finalAudioPath])
+//    {
+//        [fileManager removeItemAtPath:finalAudioPath error:&error];
+//        NSError *error;
+//        if ([fileManager removeItemAtPath:finalAudioPath error:&error] == NO)
+//        {
+//            NSLog(@"removeItemAtPath %@ error:%@", finalAudioPath, error);
+//        }
+//        
+//    }
+//    
     
 
-                                   AVAssetExportSession* exportSession = [AVAssetExportSession
-                                                                          exportSessionWithAsset:composition
-                                                                          presetName:AVAssetExportPresetAppleM4A];
-                                   
-                                   
-                                   
-                                   //This gives me an output URL to a file name that doesn't yet exist
+    AVAssetExportSession* exportSession = [AVAssetExportSession
+                                           exportSessionWithAsset:composition
+                                           presetName:AVAssetExportPresetAppleM4A];
     
-    
-                                   
+    exportSession.outputURL = [NSURL fileURLWithPath:finalAudioPath];
+    exportSession.outputFileType = AVFileTypeAppleM4A;
+       
+       
+       
+       [exportSession exportAsynchronouslyWithCompletionHandler:^{
 
-
-                                   
-                                   exportSession.outputURL = [NSURL fileURLWithPath:finalAudioPath];
-                                   exportSession.outputFileType = AVFileTypeAppleM4A;
-                                   
-                                   
-                                   
-                                   [exportSession exportAsynchronouslyWithCompletionHandler:^{
-        
         
         switch (exportSession.status)
         {
@@ -274,17 +263,17 @@
                 NSLog(@"%@",exportSession.error);
                 break;
             case AVAssetExportSessionStatusCompleted:
-                [self playAudio];
+                [self playAudio:finalAudioPath];
                 break;
             case AVAssetExportSessionStatusWaiting:
                 break;
             default:
                 break;
         }
-                                   }];
+    }];
 }
 
-- (void)playAudio
+- (void)playAudio:(NSString *)audioFilePath
 {
     
     NSError *error;
@@ -292,39 +281,67 @@
     self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:finalAudioPath] error:&error];
     [self.player prepareToPlay];
     [self.player play];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
     
-//    NSArray * dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *docsDir = [dirPaths objectAtIndex:0];
-//   // NSString *applicationDocumentsDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject].absoluteString ;
-//    NSString *storePath = [docsDir stringByAppendingPathComponent:@"audio.wav"];
-//    NSLog(@"storePath: %@", storePath);
-//    NSURL *filepath;
-//    for (NSData *audioObject in audioFiles)
-//    {
-//        NSLog(@"Hallo");
-//        
-//        [audioObject writeToFile:storePath atomically: YES];
-//        filepath = [NSURL fileURLWithPath:storePath];
-//        AVPlayerItem *avItem = [AVPlayerItem playerItemWithURL:filepath];
-//        [audioItems addObject:avItem];
-//        
-//        NSLog(@"FilePath: %@", filepath);
-//        NSData *dataw = [NSData dataWithContentsOfURL:filepath];
-//      //  self.player = [[AVAudioPlayer alloc]initWithData:dataw error:nil];
-//       
-//        
-//    }
-    //self.player.delegate = self;
-    
-//    self.player = [[AVQueuePlayer alloc]initWithItems:audioItems];
-//    [self.player play];
-    
-  
 
 }
 
-#pragma mark - Navigation
+- (void)updateSlider
+{
+    NSTimeInterval currentTime = self.player.currentTime;
+    NSString* currentTimeString = [NSString stringWithFormat:@"%.02f", currentTime];
+    
+    self.audioSlider.minimumValue = 0.0f;
+    self.audioSlider.value = currentTime;
+    self.audioSlider.maximumValue = self.player.duration;
+    self.currentPlayTime.text =  currentTimeString;
+    self.totalPlayTime.text = [NSString stringWithFormat:@"%.02f", self.player.duration - currentTime];
+}
 
+- (void)timerFired:(NSTimer*)timer
+{
+    [self updateSlider];
+}
+
+- (void)stopTimer
+{
+    [self.timer invalidate];
+    self.timer = nil;
+    [self updateSlider];
+}
+
+- (IBAction)currentTimeSliderTouchUpInside:(id)sender
+{
+    [self.player stop];
+    NSLog(@"Slider Value: %f", self.audioSlider.value);
+    self.player.currentTime = self.audioSlider.value;
+    [self.player prepareToPlay];
+    [self.player play];
+}
+
+
+
+- (NSString*)convertTime:(NSInteger)time
+{
+        NSInteger minutes = time / 60;
+        NSInteger seconds = time % 60;
+        return [NSString stringWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
+}
+
+#pragma mark - AVAudioPlayerDelegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    NSLog(@"%s successfully=%@", __PRETTY_FUNCTION__, flag ? @"YES"  : @"NO");
+    [self stopTimer];
+    [self updateSlider];
+}
+
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
+{
+    NSLog(@"%s error=%@", __PRETTY_FUNCTION__, error);
+    [self stopTimer];
+    [self updateSlider];
+}
 
 
 @end
