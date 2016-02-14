@@ -9,16 +9,14 @@
 #import "DetailViewController.h"
 #import "Pocket_Voice-Swift.h"
 #import "ReadabilityManager.h"
+#import "AudioControlsView.h"
 
 
 
 @interface DetailViewController ()
+
+
 @property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic)   AVQueuePlayer *playerQueue;
-@property (strong, nonatomic)   AVAudioPlayer *player;
-@property (strong, nonatomic) IBOutlet UISlider *audioSlider;
-@property (strong, nonatomic) IBOutlet UILabel *totalPlayTime;
-@property (strong, nonatomic) IBOutlet UILabel *currentPlayTime;
 @property (strong, nonatomic) NSMutableArray *audioResponse;
 @property (nonatomic, strong) NSTimer* timer;
 
@@ -36,15 +34,18 @@
 {
     [super viewDidLoad];
     self.title = self.item.title;
-    [self.player setDelegate:self];
     self.automaticallyAdjustsScrollViewInsets = NO ;//textview has whitespace otherwise
-    self.currentPlayTime.text = @"0:01";
+
     
-    // Customization for play slider
-    self.audioSlider.minimumTrackTintColor = [UIColor blackColor];
-    self.audioSlider.maximumTrackTintColor = [UIColor blackColor];
-    UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [self.audioSlider setThumbImage:image forState:UIControlStateNormal];
+    //audio controls
+//    self.playSlider.minimumTrackTintColor = [UIColor blackColor];
+//    self.playSlider.maximumTrackTintColor = [UIColor blackColor];
+//    UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    [self.playSlider setThumbImage:image forState:UIControlStateNormal];
+    
+    // Sound item
+
+
     
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -62,7 +63,7 @@
         if(success)
         {
            dispatch_async(dispatch_get_main_queue(), ^{
-               self.audioResponse = response;
+            self.audioResponse = response;
             self.textView.text = [self putTextTogether:response];
             [spinner stopAnimating];
            });
@@ -92,25 +93,25 @@
 }
 
 
-    
-
-
-- (IBAction)tappedPlayButton:(UIButton *)sender
+- (IBAction)playButtonTapped:(UIBarButtonItem *)sender
 {
     
     //http://stackoverflow.com/questions/8504620/combine-two-wav-files-in-iphone-using-objective-c
-
-  
-  
+    
+    
+    
     
     audioItems = [NSMutableArray new];
     audioFiles = [NSMutableArray new];
     NSLog(@"url: %@", self.item.url);
-
-    [self downloadAudio:self.audioResponse];
-
     
+    [self downloadAudio:self.audioResponse];
+    
+
 }
+    
+
+
 
 - (NSString *)putTextTogether:(NSMutableArray *)textArray
 {
@@ -126,66 +127,42 @@
 - (void)downloadAudio:(NSMutableArray *)textArray
 {
     WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
-    
-  //  dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    
-//    dispatch_queue_t getAudio = dispatch_queue_create("parse website content", NULL);
-    dispatch_queue_t serialQueue = dispatch_queue_create("com.pocketvoice.queue", DISPATCH_QUEUE_SERIAL);
 
-    NSLog(@"Heykes");
    //https://github.com/BoltsFramework/Bolts-ObjC
-     __block int runningRequests = 0;
-   // __block NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    //http://stackoverflow.com/questions/34212022/downloading-images-asynchronously-in-sequence?rq=1
+    
+    dispatch_group_t group = dispatch_group_create();
     
     for (NSString *content in textArray)
     {
-         // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        runningRequests++;
-       // NSLog(@"Number of characters --DETAILVIEWCONTROLLER: %lu", (unsigned long)[content length]);
-       // NSLog(@"CONTENT :%@", content);
-        [ttsManager downloadAudioFromText:content completionHandler:^(NSData * _Nonnull data)
+        dispatch_group_enter(group);
+         [ttsManager downloadAudioFromText:content completionHandler:^(NSData * _Nonnull data)
          {
-             NSLog(@"Count TextArray: %lu", (unsigned long)[textArray count]);
-             NSLog(@"Ronde nummer: %i", runningRequests);
+
             audioData = data;
             if (!audioData)
              {
                  NSLog(@"data leeg??");
-                 
+                 dispatch_group_leave(group);
              }
              else
              {
-                 // NSLog(@"Inhoud: %@", [audioFiles description]);
-               //  NSLog(@"Nu voegen we data toe!");
                 [audioFiles addObject:audioData];
                  NSLog(@"Number of items: %lu", (unsigned long)[audioFiles count]);
-                 //[dic setObject:audioData forKey:[NSNumber numberWithInt:runningRequests]];
-               
-                 runningRequests--;
-                 if (runningRequests == 0)
-                 {
-//                     NSArray *sorted = [[dic allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-//                         return [[dic objectForKey:obj1] compare:[dic objectForKey:obj2]];
-//                     }];
-                     
-                     [self concatenateAudioFiles:audioFiles];
-                     
-                     
-                     
-                 }
+                 dispatch_group_leave(group);
              }
-        //    dispatch_semaphore_signal(sema);
+
          }];
-       
-      //  dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-      
-       
     }
     
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@"Leaving the dispatch group");
+          [self concatenateAudioFiles:audioFiles];
+    });
+    
+  
     
     //http://eppz.eu/blog/uiview-from-xib/
-  //  dispatch_async(serialQueue, ^{ [self concatenateAudioFiles:audioFiles];});
-   
 }
 
 
@@ -224,25 +201,13 @@
     
     
     NSError *fileError;
-    if ([[NSFileManager defaultManager] isDeletableFileAtPath:finalAudioPath]) {
+    if ([[NSFileManager defaultManager] isDeletableFileAtPath:finalAudioPath])
+    {
         BOOL success = [[NSFileManager defaultManager] removeItemAtPath:finalAudioPath error:&error];
         if (!success) {
             NSLog(@"Error removing file at path: %@", fileError.localizedDescription);
         }
     }
-    
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    if ([fileManager fileExistsAtPath:finalAudioPath])
-//    {
-//        [fileManager removeItemAtPath:finalAudioPath error:&error];
-//        NSError *error;
-//        if ([fileManager removeItemAtPath:finalAudioPath error:&error] == NO)
-//        {
-//            NSLog(@"removeItemAtPath %@ error:%@", finalAudioPath, error);
-//        }
-//        
-//    }
-//    
     
 
     AVAssetExportSession* exportSession = [AVAssetExportSession
@@ -256,91 +221,41 @@
        
        [exportSession exportAsynchronouslyWithCompletionHandler:^{
 
-        
-        switch (exportSession.status)
-        {
-            case AVAssetExportSessionStatusFailed:
+           if (exportSession.status ==AVAssetExportSessionStatusFailed )
+           {
                 NSLog(@"%@",exportSession.error);
-                break;
-            case AVAssetExportSessionStatusCompleted:
-                [self playAudio:finalAudioPath];
-                break;
-            case AVAssetExportSessionStatusWaiting:
-                break;
-            default:
-                break;
-        }
+           }
+           else if (exportSession.status == AVAssetExportSessionStatusCompleted)
+           {
+               dispatch_async(dispatch_get_main_queue(), ^{
+                   [self playAudio:finalAudioPath];
+               });
+           }
+           else if (exportSession.status == AVAssetExportSessionStatusWaiting)
+           {
+               NSLog(@"Waiting on export audiofile");
+           }
+        
     }];
 }
 
-- (void)playAudio:(NSString *)audioFilePath
+- (void)playAudio:(NSString *)audioURLString
 {
     
-    NSError *error;
-    NSLog(@"Deze file spelen we af: %@", finalAudioPath);
-    self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL URLWithString:finalAudioPath] error:&error];
-    [self.player prepareToPlay];
-    [self.player play];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+    NSURL *audioURL = [NSURL URLWithString:audioURLString];
+    
+    AudioControlsView *view = [[[NSBundle mainBundle] loadNibNamed:@"AudioControlView"
+                                                             owner:self
+                                                           options:nil] objectAtIndex:0];
+    if (view)
+    {
+        view.fileURL = audioURL;
+    }
+    view.frame= CGRectMake(0,300 , self.view.frame.size.width, 70);
+    view.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:view];
     
 
-}
-
-- (void)updateSlider
-{
-    NSTimeInterval currentTime = self.player.currentTime;
-    NSString* currentTimeString = [NSString stringWithFormat:@"%.02f", currentTime];
-    
-    self.audioSlider.minimumValue = 0.0f;
-    self.audioSlider.value = currentTime;
-    self.audioSlider.maximumValue = self.player.duration;
-    self.currentPlayTime.text =  currentTimeString;
-    self.totalPlayTime.text = [NSString stringWithFormat:@"%.02f", self.player.duration - currentTime];
-}
-
-- (void)timerFired:(NSTimer*)timer
-{
-    [self updateSlider];
-}
-
-- (void)stopTimer
-{
-    [self.timer invalidate];
-    self.timer = nil;
-    [self updateSlider];
-}
-
-- (IBAction)currentTimeSliderTouchUpInside:(id)sender
-{
-    [self.player stop];
-    NSLog(@"Slider Value: %f", self.audioSlider.value);
-    self.player.currentTime = self.audioSlider.value;
-    [self.player prepareToPlay];
-    [self.player play];
-}
-
-
-
-- (NSString*)convertTime:(NSInteger)time
-{
-        NSInteger minutes = time / 60;
-        NSInteger seconds = time % 60;
-        return [NSString stringWithFormat:@"%02ld:%02ld", (long)minutes, (long)seconds];
-}
-
-#pragma mark - AVAudioPlayerDelegate
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
-{
-    NSLog(@"%s successfully=%@", __PRETTY_FUNCTION__, flag ? @"YES"  : @"NO");
-    [self stopTimer];
-    [self updateSlider];
-}
-
-- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
-{
-    NSLog(@"%s error=%@", __PRETTY_FUNCTION__, error);
-    [self stopTimer];
-    [self updateSlider];
 }
 
 

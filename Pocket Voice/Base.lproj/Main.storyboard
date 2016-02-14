@@ -100,55 +100,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gJ-ed-ZX9">
-                                <rect key="frame" x="0.0" y="72" width="375" height="530"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ML2-t0-L8E">
-                                <rect key="frame" x="171" y="599" width="33" height="30"/>
-                                <state key="normal" title="Play "/>
-                                <connections>
-                                    <action selector="tappedPlayButton:" destination="BAX-mA-lpN" eventType="touchUpInside" id="IAm-Ez-Wfd"/>
-                                </connections>
-                            </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Z3K-Dy-1Ml">
-                                <rect key="frame" x="85" y="632" width="204" height="31"/>
-                                <connections>
-                                    <action selector="currentTimeSliderTouchUpInside:" destination="BAX-mA-lpN" eventType="valueChanged" id="vHi-V4-IdW"/>
-                                </connections>
-                            </slider>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1j-No-bzU">
-                                <rect key="frame" x="93" y="599" width="34" height="30"/>
-                                <state key="normal" title="back"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXi-uq-bup">
-                                <rect key="frame" x="45" y="636" width="34" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iV7-RS-lT6">
-                                <rect key="frame" x="234" y="599" width="53" height="30"/>
-                                <state key="normal" title="forward"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brb-U8-1qU">
-                                <rect key="frame" x="295" y="632" width="34" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cin-GQ-clM"/>
+                    <navigationItem key="navigationItem" id="cin-GQ-clM">
+                        <barButtonItem key="rightBarButtonItem" title="Play" id="5Mc-fE-MuD">
+                            <connections>
+                                <action selector="playButtonTapped:" destination="BAX-mA-lpN" id="TQ7-7J-CmU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="TextView" destination="6gJ-ed-ZX9" id="DBk-ov-VaT"/>
-                        <outlet property="audioSlider" destination="Z3K-Dy-1Ml" id="e82-jg-xk4"/>
-                        <outlet property="currentPlayTime" destination="PXi-uq-bup" id="cdn-jt-EUg"/>
                         <outlet property="textView" destination="6gJ-ed-ZX9" id="FQa-K8-Dof"/>
-                        <outlet property="totalPlayTime" destination="brb-U8-1qU" id="xCc-l2-thL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAa-1c-Ksl" userLabel="First Responder" sceneMemberID="firstResponder"/>

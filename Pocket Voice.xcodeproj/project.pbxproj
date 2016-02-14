@@ -14,6 +14,9 @@
 		39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39092F191BB7062F001AAB77 /* Assets.xcassets */; };
 		39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */; };
 		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
+		39313CA31C70EC0C0081B679 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39313CA21C70EC0C0081B679 /* MediaPlayer.framework */; };
+		39313CD11C713A320081B679 /* AudioControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39313CD01C713A320081B679 /* AudioControlView.xib */; };
+		39313CD41C713A3D0081B679 /* AudioControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39313CD31C713A3D0081B679 /* AudioControlsView.m */; };
 		393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 393447131C628BBF0021BD1D /* ReadabilityManager.m */; };
 		393715221C5ED14500CFD16A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393715211C5ED14500CFD16A /* DetailViewController.m */; };
 		39374D221C6F92CD00ADB193 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -70,6 +73,10 @@
 		39092F1E1BB7062F001AAB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesListTableViewController.h; sourceTree = "<group>"; };
 		39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesListTableViewController.m; sourceTree = "<group>"; };
+		39313CA21C70EC0C0081B679 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		39313CD01C713A320081B679 /* AudioControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioControlView.xib; sourceTree = "<group>"; };
+		39313CD21C713A3D0081B679 /* AudioControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioControlsView.h; sourceTree = "<group>"; };
+		39313CD31C713A3D0081B679 /* AudioControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioControlsView.m; sourceTree = "<group>"; };
 		393447121C628BBF0021BD1D /* ReadabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadabilityManager.h; sourceTree = "<group>"; };
 		393447131C628BBF0021BD1D /* ReadabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadabilityManager.m; sourceTree = "<group>"; };
 		393715201C5ED14500CFD16A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -99,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39313CA31C70EC0C0081B679 /* MediaPlayer.framework in Frameworks */,
 				024DD56B552E6A0442CB16AC /* libPods.a in Frameworks */,
 				393D8C1B1C604794009457D0 /* XCGLogger.framework in Frameworks */,
 				393D8C191C604794009457D0 /* Starscream.framework in Frameworks */,
@@ -160,6 +168,7 @@
 		393447111C628B9C0021BD1D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				39313CD01C713A320081B679 /* AudioControlView.xib */,
 				39092F161BB7062F001AAB77 /* Main.storyboard */,
 				39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */,
 			);
@@ -169,6 +178,7 @@
 		393D8C0D1C6042F5009457D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39313CA21C70EC0C0081B679 /* MediaPlayer.framework */,
 				393D8C0E1C604794009457D0 /* Alamofire.framework */,
 				393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */,
 				393D8C101C604794009457D0 /* HTTPStatusCodes.framework */,
@@ -184,6 +194,8 @@
 		396684CD1C5FD71000FCE48E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				39313CD21C713A3D0081B679 /* AudioControlsView.h */,
+				39313CD31C713A3D0081B679 /* AudioControlsView.m */,
 				39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */,
 				39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */,
 				393715201C5ED14500CFD16A /* DetailViewController.h */,
@@ -289,6 +301,7 @@
 				39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */,
 				39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */,
 				39092F181BB7062F001AAB77 /* Main.storyboard in Resources */,
+				39313CD11C713A320081B679 /* AudioControlView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */,
+				39313CD41C713A3D0081B679 /* AudioControlsView.m in Sources */,
 				394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */,
 				393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */,
 				39092F121BB7062F001AAB77 /* AppDelegate.m in Sources */,

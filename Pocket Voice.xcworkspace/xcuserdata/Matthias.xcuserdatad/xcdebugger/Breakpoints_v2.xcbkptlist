@@ -70,49 +70,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pocket Voice/DetailViewController.m"
-            timestampString = "477105575.368183"
+            timestampString = "477183231.610476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "-downloadAudio:"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "-playAudio:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DetailViewController downloadAudio:]"
-                  moduleName = "Pocket Voice"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Matthias/Desktop/Objective-C%20&amp;%20iOS/Coden/Pocket%20Voice/Pocket%20Voice/DetailViewController.m"
-                  timestampString = "477015879.489297"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143"
-                  offsetFromSymbolStart = "1218">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DetailViewController downloadAudio:]"
-                  moduleName = "Pocket Voice"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Matthias/Desktop/Objective-C%20&amp;%20iOS/Coden/Pocket%20Voice/Pocket%20Voice/DetailViewController.m"
-                  timestampString = "477015879.489543"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143"
-                  offsetFromSymbolStart = "1360">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pocket Voice/DetailViewController.m"
+            timestampString = "477183231.610476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "-playAudio:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

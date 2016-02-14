@@ -87,7 +87,7 @@
                                arguments:argumentDictionary
                                  handler:^(PocketAPI *api, NSString *apiMethod, NSDictionary *response, NSError *error)
      {
-         NSLog(@"JSON: %@", response);
+       //  NSLog(@"JSON: %@", response);
          NSNumber *timeStamp = [response valueForKeyPath:@"since"];
          [self saveLastTimeSincePocketUpdate:timeStamp];
          pocketItemsArray = [self putJSONInObjects:response];
@@ -101,8 +101,6 @@
      }];
 
 }
-
-
 
 - (void)saveLastTimeSincePocketUpdate:(NSNumber *)timestamp
 {
@@ -123,7 +121,7 @@
     for (id key in keys)
     {
         NSDictionary *ArticleDic = [pocketItemsDic valueForKey:key];
-        NSLog(@"Dit is de dic: %@", ArticleDic);
+      //  NSLog(@"Dit is de dic: %@", ArticleDic);
         //[pocketItemsArray addObject:[ArticleDic valueForKeyPath:@"given_title"]];
         PocketItem *item = [[PocketItem alloc]init];
         item.url = [ArticleDic valueForKeyPath:@"given_url"];
@@ -161,9 +159,7 @@
 
 
 - (void)writeStringToFile:(NSString*)aString {
-    
-    
-    
+
     if (![[NSFileManager defaultManager] fileExistsAtPath:path ])
     {
         [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
