@@ -19,19 +19,21 @@
     _fileURL = fileURL;
  
    
+    //audio controls
+    //    self.playSlider.minimumTrackTintColor = [UIColor blackColor];
+    //    self.playSlider.maximumTrackTintColor = [UIColor blackColor];
+    //    UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    //    [self.playSlider setThumbImage:image forState:UIControlStateNormal];
+    
+    // Sound item
+    
     self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:self.fileURL error:nil];
     self.player.delegate = self;
     [self.player prepareToPlay];
-}
-
-
-
-- (void)initAudioPlayer
-{
-    self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:self.fileURL error:nil];
-    [self.player prepareToPlay];
     
 }
+
+
 
 - (IBAction)play:(id)sender {
    
@@ -61,6 +63,7 @@
 {
     if(self.timer)
         [self stopTimer];
+    [self updateDisplay];
     [self updateSliderLabels];
 }
 

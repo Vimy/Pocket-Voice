@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PocketItem.h"
 @import WatsonDeveloperCloud;
+//@import SwiftSpinner;
 
 @interface DetailViewController : UIViewController <AVAudioPlayerDelegate>
 

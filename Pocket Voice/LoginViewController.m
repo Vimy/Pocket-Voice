@@ -10,7 +10,7 @@
 #import "PocketAPI.h"
 
 
-@interface LoginViewController ()
+@interface LoginViewController () <SFSafariViewControllerDelegate>
 
 @property (nonatomic, copy) void (^loggedInHandler)(void);
 
@@ -23,6 +23,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showSafariViewController:)
+                                                 name:@"pocketLoginSafarisNeeded"
+                                               object:nil];
 
 }
 
@@ -30,18 +34,45 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)showSafariViewController:(NSNotification *)notification
+{
+    NSDictionary *dic = [notification userInfo];
+    NSString *urlString = dic[@"url"];
+    NSLog(@"url :%@", notification);
+    SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:urlString] entersReaderIfAvailable:NO];
+        safariVC.delegate = self;
+        UIViewController *frontViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+        if (frontViewController.presentedViewController)
+        {
+            frontViewController = frontViewController.presentedViewController;
+        }
+    
+        [frontViewController presentViewController:safariVC animated:YES completion:nil];
+}
 - (IBAction)loginButtonPressed:(UIButton *)sender
 {
-        [[PocketAPI sharedAPI] loginWithHandler:^(PocketAPI *api, NSError *error)
-               {
-                   
-          
-                   if (error)
-                   {
-                      NSLog(@"Dit is de mogelijke error: %@",[error userInfo]);
-                   }
-                
-                   }];
+    
+    
+    //SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"https://getpocket.com/auth/authorize?request_token=211eb0e8-f65a-5032-847e-1c1bdc&redirect_uri=pocketapp46280%3AauthorizationFinished"] entersReaderIfAvailable:NO];
+//    
+//                SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"http://www.google.be"] entersReaderIfAvailable:NO];
+//    safariVC.delegate = self;
+//    UIViewController *frontViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+//    if (frontViewController.presentedViewController)
+//    {
+//        frontViewController = frontViewController.presentedViewController;
+//    }
+//    
+//    [frontViewController presentViewController:safariVC animated:YES completion:nil];
+
+    
+        [[PocketAPI sharedAPI] loginWithHandler:^(PocketAPI *api, NSError *error){
+            if (error)
+            {
+                NSLog(@"Dit is de mogelijke error: %@",[error userInfo]);
+            }
+        }];
     
 }
 

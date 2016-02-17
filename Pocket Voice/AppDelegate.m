@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 
@@ -21,6 +22,24 @@
 
     NSString *storyboardId = [[PocketAPI sharedAPI] isLoggedIn] ? @"articlesListVC" : @"loginVC";
     self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:storyboardId];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+//    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+//    NSError *error;
+//    BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&error];
+//    if (!success) {
+//        //Handle error
+//        NSLog(@"%@", [error localizedDescription]);
+//    } else {
+//        // Yay! It worked!
+//    }
+    
     return YES;
 }
 
@@ -29,7 +48,7 @@
  sourceApplication:(NSString *)sourceApplication
         annotation:(id)annotation
 {
-    
+    [[PocketAPI sharedAPI] logout];
     if([[PocketAPI sharedAPI] handleOpenURL:url]){
       //  self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"articlesListVC"];
         return YES;

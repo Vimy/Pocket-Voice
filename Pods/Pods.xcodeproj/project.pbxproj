@@ -17,6 +17,12 @@
 		21EB885C2538BD7C44F975D301146465 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D0D0663BFEACD3F126A939DB77861F /* Foundation.framework */; };
 		2E8A32ED46194EDBE22146271F6D26DE /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AD36A127CF22E4DD79E7DB7B7DD17D /* UIImageView+AFNetworking.m */; };
 		2EC6E604E3E577B802634357B8A50397 /* PocketAPIOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E11AAD34A0514D1F1C0577704F83A3CD /* PocketAPIOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39300A091C73E44A009BB57F /* LoginSafariViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 39300A061C73E44A009BB57F /* LoginSafariViewController.h */; };
+		39300A0A1C73E44A009BB57F /* LoginSafariViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 39300A061C73E44A009BB57F /* LoginSafariViewController.h */; };
+		39300A0B1C73E44A009BB57F /* LoginSafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39300A071C73E44A009BB57F /* LoginSafariViewController.m */; };
+		39300A0C1C73E44A009BB57F /* LoginSafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39300A071C73E44A009BB57F /* LoginSafariViewController.m */; };
+		39300A121C73E835009BB57F /* PocketLoginViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 39300A101C73E835009BB57F /* PocketLoginViewController.h */; };
+		39300A131C73E835009BB57F /* PocketLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39300A111C73E835009BB57F /* PocketLoginViewController.m */; };
 		3A10EF6ABF51D1D00B06AC5EF3A8C28C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8908189965D177AD6BAB607AE614C1E /* SystemConfiguration.framework */; };
 		3D2789FC760A97301909F0B1201626CD /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B1387C1AA3F18A2012D23FBE64FCED /* AFNetworking-dummy.m */; };
 		3F1BC9BAFFEEABB1ABC7614DF0FC97D5 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9FA252F55A211FEC69A20687F008D /* AFAutoPurgingImageCache.m */; };
@@ -105,6 +111,12 @@
 		2BCC458FDD5F692BBB2BFC64BB5701FC /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
 		2C3FA101C77BBB9691CE81BAE29586E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		37864639795C4854F0231F20AE600CAD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		39300A061C73E44A009BB57F /* LoginSafariViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSafariViewController.h; sourceTree = "<group>"; };
+		39300A071C73E44A009BB57F /* LoginSafariViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSafariViewController.m; sourceTree = "<group>"; };
+		39300A081C73E44A009BB57F /* LoginSafariViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginSafariViewController.xib; sourceTree = "<group>"; };
+		39300A0F1C73E7EC009BB57F /* PocketLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PocketLoginViewController.xib; sourceTree = "<group>"; };
+		39300A101C73E835009BB57F /* PocketLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketLoginViewController.h; sourceTree = "<group>"; };
+		39300A111C73E835009BB57F /* PocketLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketLoginViewController.m; sourceTree = "<group>"; };
 		3A458E9AFBD47E4D4D4ED0305578E701 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		400AB9ED96394455D2D362D348D9A034 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		405695143C8FA83342ED0EE8560CB2F7 /* AFNetworking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.xcconfig; sourceTree = "<group>"; };
@@ -256,6 +268,9 @@
 			children = (
 				90E66C8E3EDC6BBCCA01F73C7B226015 /* PocketAPI.h */,
 				4BD4CE72936DF605AFB3C2723B6B4E85 /* PocketAPI.m */,
+				39300A101C73E835009BB57F /* PocketLoginViewController.h */,
+				39300A111C73E835009BB57F /* PocketLoginViewController.m */,
+				39300A0F1C73E7EC009BB57F /* PocketLoginViewController.xib */,
 				A588D3E429082E08D6E8DA247696AD8B /* PocketAPI+NSOperation.h */,
 				E84D9842F09EF9AA8CD45B7052EA9953 /* PocketAPIKeychainUtils.h */,
 				123D698BA2F6B8BCEC5B55F2723D4ADA /* PocketAPIKeychainUtils.m */,
@@ -264,6 +279,9 @@
 				AFF75B4A9498D4F985712400118D821A /* PocketAPIOperation.h */,
 				E11AAD34A0514D1F1C0577704F83A3CD /* PocketAPIOperation.m */,
 				972B15297B1A2E868927DDD2EAF4C4EE /* PocketAPITypes.h */,
+				39300A061C73E44A009BB57F /* LoginSafariViewController.h */,
+				39300A071C73E44A009BB57F /* LoginSafariViewController.m */,
+				39300A081C73E44A009BB57F /* LoginSafariViewController.xib */,
 				BAEC93E436341F4D7E567E66D8143D9B /* Support Files */,
 			);
 			path = PocketAPI;
@@ -478,6 +496,7 @@
 				CAC483EF637FB4A2C2E2FC75BA631B87 /* AFAutoPurgingImageCache.h in Headers */,
 				AB39AC9746E7575D7449700475E41B0B /* AFHTTPSessionManager.h in Headers */,
 				5808B477EFF509D810B5CDCFDC944F80 /* AFImageDownloader.h in Headers */,
+				39300A091C73E44A009BB57F /* LoginSafariViewController.h in Headers */,
 				1480F4923DBBF217F60572EEECB4027C /* AFNetworkActivityIndicatorManager.h in Headers */,
 				EC7CADE416A78A1CD6936018A6695126 /* AFNetworking-umbrella.h in Headers */,
 				E7988678C81F7CCB95D239375FC6986D /* AFNetworking.h in Headers */,
@@ -508,6 +527,8 @@
 				1078AC1D64F53FA1DD3C8EDE6C8C13E5 /* PocketAPILogin.h in Headers */,
 				D3541C2A1BFAA4CC94F3C93CBBE70F4E /* PocketAPIOperation.h in Headers */,
 				EB231B51329875DD07B08B2437067682 /* PocketAPITypes.h in Headers */,
+				39300A121C73E835009BB57F /* PocketLoginViewController.h in Headers */,
+				39300A0A1C73E44A009BB57F /* LoginSafariViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +648,7 @@
 				68A38977EBAE334DC3C22386D00D2622 /* AFNetworkReachabilityManager.m in Sources */,
 				20607BE2B1E5F31765026E5AC64DB27D /* AFSecurityPolicy.m in Sources */,
 				DFFA215EEAA8DDBD540076927535275C /* AFURLRequestSerialization.m in Sources */,
+				39300A0B1C73E44A009BB57F /* LoginSafariViewController.m in Sources */,
 				B5852322ADE88AAD56EE042B80BA81E4 /* AFURLResponseSerialization.m in Sources */,
 				707B1A7541C8DBDDE8C27896A61370BE /* AFURLSessionManager.m in Sources */,
 				6ED4ABEE8A5F51F5ECB59FA1781D29C6 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -653,8 +675,10 @@
 			files = (
 				EC9A744E1A4B39CA18E84E0464C197E8 /* PocketAPI-dummy.m in Sources */,
 				791C266AD36F0AC00508269F7B68C52E /* PocketAPI.m in Sources */,
+				39300A0C1C73E44A009BB57F /* LoginSafariViewController.m in Sources */,
 				A9EA5F8D56580ED3B467D12C269291A1 /* PocketAPIKeychainUtils.m in Sources */,
 				8761F05A4BDED755365F03E23C2D31FD /* PocketAPILogin.m in Sources */,
+				39300A131C73E835009BB57F /* PocketLoginViewController.m in Sources */,
 				2EC6E604E3E577B802634357B8A50397 /* PocketAPIOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

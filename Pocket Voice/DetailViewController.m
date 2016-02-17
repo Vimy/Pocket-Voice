@@ -19,7 +19,8 @@
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) NSMutableArray *audioResponse;
 @property (nonatomic, strong) NSTimer* timer;
-
+@property (nonatomic, strong)  AudioControlsView *audioView;
+@property (nonatomic, strong) SwiftSpinner *swiftySpinner;
 @end
 
 @implementation DetailViewController
@@ -37,15 +38,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO ;//textview has whitespace otherwise
 
     
-    //audio controls
-//    self.playSlider.minimumTrackTintColor = [UIColor blackColor];
-//    self.playSlider.maximumTrackTintColor = [UIColor blackColor];
-//    UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    [self.playSlider setThumbImage:image forState:UIControlStateNormal];
     
-    // Sound item
-
-
+    
+    
     
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -126,16 +121,30 @@
 
 - (void)downloadAudio:(NSMutableArray *)textArray
 {
+    _swiftySpinner = [SwiftSpinner new];
+    [SwiftSpinner show:@"Generating audio" animated:YES];
+
+//    NSArray * dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docsDir = [dirPaths objectAtIndex:0];
+    
+//    finalAudioPath = [docsDir stringByAppendingPathComponent: @"audio.m4a"];
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:finalAudioPath])
+//    {
+//        [self playAudio:finalAudioPath];
+//    }
+//    else
+//    {
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
 
    //https://github.com/BoltsFramework/Bolts-ObjC
     //http://stackoverflow.com/questions/34212022/downloading-images-asynchronously-in-sequence?rq=1
     
     dispatch_group_t group = dispatch_group_create();
-    
     for (NSString *content in textArray)
     {
         dispatch_group_enter(group);
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
          [ttsManager downloadAudioFromText:content completionHandler:^(NSData * _Nonnull data)
          {
 
@@ -143,24 +152,29 @@
             if (!audioData)
              {
                  NSLog(@"data leeg??");
-                 dispatch_group_leave(group);
              }
              else
              {
                 [audioFiles addObject:audioData];
                  NSLog(@"Number of items: %lu", (unsigned long)[audioFiles count]);
-                 dispatch_group_leave(group);
              }
-
+                dispatch_semaphore_signal(semaphore);
+                dispatch_group_leave(group);
+           
          }];
+           dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }
     
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        NSLog(@"Leaving the dispatch group");
-          [self concatenateAudioFiles:audioFiles];
-    });
+
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            NSLog(@"Leaving the dispatch group");
+            [self concatenateAudioFiles:audioFiles];
+            
+        });
+
+   });
     
-  
+  //  }
     
     //http://eppz.eu/blog/uiview-from-xib/
 }
@@ -242,20 +256,47 @@
 - (void)playAudio:(NSString *)audioURLString
 {
     
+    [SwiftSpinner hide:^{
+        NSLog(@"Gedaan met wachten! Einde animatie");
+    }];
     NSURL *audioURL = [NSURL URLWithString:audioURLString];
     
-    AudioControlsView *view = [[[NSBundle mainBundle] loadNibNamed:@"AudioControlView"
+    
+    
+    self.audioView = [[[NSBundle mainBundle] loadNibNamed:@"AudioControlView"
                                                              owner:self
                                                            options:nil] objectAtIndex:0];
-    if (view)
+    if (self.audioView)
     {
-        view.fileURL = audioURL;
+        self.audioView.fileURL = audioURL;
     }
-    view.frame= CGRectMake(0,300 , self.view.frame.size.width, 70);
-    view.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:view];
     
+   self.audioView.frame = CGRectMake(0,self.view.bounds.size.height+self.audioView.frame.size.height, self.view.bounds.size.width, 70);
+   // audioView.frame= CGRectMake(0,300 , self.view.frame.size.width, 70);
+    self.audioView.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:self.audioView];
+    [self showViewAnimation];
+    
+}
 
+- (void)showViewAnimation
+{
+    [UIView animateWithDuration:0.8 animations:^{
+        self.audioView.frame = CGRectMake(0,self.view.bounds.size.height-self.audioView.frame.size.height, self.view.bounds.size.width, 70);
+    } completion:^(BOOL finished) {
+        NSLog(@"Animatie geslaagd!");
+        [self.audioView play:self];
+    }];
+}
+
+- (void)hideViewAnimation
+{
+    
+    [UIView animateWithDuration:0.8 animations:^{
+        self.audioView.frame = CGRectMake(0,self.view.bounds.size.height+self.audioView.frame.size.height, self.view.bounds.size.width, 70);
+    } completion:^(BOOL finished) {
+        NSLog(@"Animatie geslaagd!");
+    }];
 }
 
 

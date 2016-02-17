@@ -14,10 +14,16 @@
 		39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39092F191BB7062F001AAB77 /* Assets.xcassets */; };
 		39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */; };
 		39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */; };
+		393009E91C729DD9009BB57F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393009E81C729DD9009BB57F /* SettingsViewController.m */; };
+		393009EC1C73DC38009BB57F /* LoginSafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393009EB1C73DC38009BB57F /* LoginSafariViewController.m */; };
+		39300A0E1C73E46B009BB57F /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39300A0D1C73E46B009BB57F /* SafariServices.framework */; };
+		39300A151C73E8DD009BB57F /* PocketLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39300A141C73E8DD009BB57F /* PocketLoginViewController.xib */; };
 		39313CA31C70EC0C0081B679 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39313CA21C70EC0C0081B679 /* MediaPlayer.framework */; };
 		39313CD11C713A320081B679 /* AudioControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39313CD01C713A320081B679 /* AudioControlView.xib */; };
 		39313CD41C713A3D0081B679 /* AudioControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39313CD31C713A3D0081B679 /* AudioControlsView.m */; };
+		39313CD61C714FEC0081B679 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39313CD51C714FEC0081B679 /* SwiftSpinner.swift */; };
 		393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 393447131C628BBF0021BD1D /* ReadabilityManager.m */; };
+		3934E6F61C73FFD80055E219 /* PocketUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3934E6F51C73FFD80055E219 /* PocketUIApplication.m */; };
 		393715221C5ED14500CFD16A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393715211C5ED14500CFD16A /* DetailViewController.m */; };
 		39374D221C6F92CD00ADB193 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		39374D231C6F92CD00ADB193 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -73,12 +79,21 @@
 		39092F1E1BB7062F001AAB77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesListTableViewController.h; sourceTree = "<group>"; };
 		39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesListTableViewController.m; sourceTree = "<group>"; };
+		393009E71C729DD9009BB57F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		393009E81C729DD9009BB57F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		393009EA1C73DC38009BB57F /* LoginSafariViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSafariViewController.h; sourceTree = "<group>"; };
+		393009EB1C73DC38009BB57F /* LoginSafariViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSafariViewController.m; sourceTree = "<group>"; };
+		39300A0D1C73E46B009BB57F /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		39300A141C73E8DD009BB57F /* PocketLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PocketLoginViewController.xib; sourceTree = "<group>"; };
 		39313CA21C70EC0C0081B679 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		39313CD01C713A320081B679 /* AudioControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioControlView.xib; sourceTree = "<group>"; };
 		39313CD21C713A3D0081B679 /* AudioControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioControlsView.h; sourceTree = "<group>"; };
 		39313CD31C713A3D0081B679 /* AudioControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioControlsView.m; sourceTree = "<group>"; };
+		39313CD51C714FEC0081B679 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		393447121C628BBF0021BD1D /* ReadabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadabilityManager.h; sourceTree = "<group>"; };
 		393447131C628BBF0021BD1D /* ReadabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadabilityManager.m; sourceTree = "<group>"; };
+		3934E6F41C73FFD80055E219 /* PocketUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketUIApplication.h; sourceTree = "<group>"; };
+		3934E6F51C73FFD80055E219 /* PocketUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketUIApplication.m; sourceTree = "<group>"; };
 		393715201C5ED14500CFD16A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		393715211C5ED14500CFD16A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		393D8C0E1C604794009457D0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -106,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39300A0E1C73E46B009BB57F /* SafariServices.framework in Frameworks */,
 				39313CA31C70EC0C0081B679 /* MediaPlayer.framework in Frameworks */,
 				024DD56B552E6A0442CB16AC /* libPods.a in Frameworks */,
 				393D8C1B1C604794009457D0 /* XCGLogger.framework in Frameworks */,
@@ -178,6 +194,7 @@
 		393D8C0D1C6042F5009457D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39300A0D1C73E46B009BB57F /* SafariServices.framework */,
 				39313CA21C70EC0C0081B679 /* MediaPlayer.framework */,
 				393D8C0E1C604794009457D0 /* Alamofire.framework */,
 				393D8C0F1C604794009457D0 /* AlamofireObjectMapper.framework */,
@@ -195,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				39313CD21C713A3D0081B679 /* AudioControlsView.h */,
+				3934E6F41C73FFD80055E219 /* PocketUIApplication.h */,
+				3934E6F51C73FFD80055E219 /* PocketUIApplication.m */,
 				39313CD31C713A3D0081B679 /* AudioControlsView.m */,
 				39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */,
 				39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */,
@@ -202,6 +221,10 @@
 				393715211C5ED14500CFD16A /* DetailViewController.m */,
 				394835601BB9B20B003A60E3 /* LoginViewController.h */,
 				394835611BB9B20B003A60E3 /* LoginViewController.m */,
+				393009EA1C73DC38009BB57F /* LoginSafariViewController.h */,
+				393009EB1C73DC38009BB57F /* LoginSafariViewController.m */,
+				393009E71C729DD9009BB57F /* SettingsViewController.h */,
+				393009E81C729DD9009BB57F /* SettingsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -209,11 +232,13 @@
 		396684CE1C5FD71F00FCE48E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				39300A141C73E8DD009BB57F /* PocketLoginViewController.xib */,
 				39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */,
 				39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */,
 				396684CF1C5FDA4B00FCE48E /* PocketManager.h */,
 				396684D01C5FDA4B00FCE48E /* PocketManager.m */,
 				395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */,
+				39313CD51C714FEC0081B679 /* SwiftSpinner.swift */,
 				393447121C628BBF0021BD1D /* ReadabilityManager.h */,
 				393447131C628BBF0021BD1D /* ReadabilityManager.m */,
 			);
@@ -272,6 +297,11 @@
 				TargetAttributes = {
 					39092F091BB7062F001AAB77 = {
 						CreatedOnToolsVersion = 7.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -302,6 +332,7 @@
 				39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */,
 				39092F181BB7062F001AAB77 /* Main.storyboard in Resources */,
 				39313CD11C713A320081B679 /* AudioControlView.xib in Resources */,
+				39300A151C73E8DD009BB57F /* PocketLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,12 +397,16 @@
 				393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */,
 				39092F121BB7062F001AAB77 /* AppDelegate.m in Sources */,
 				39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */,
+				39313CD61C714FEC0081B679 /* SwiftSpinner.swift in Sources */,
 				39374D231C6F92CD00ADB193 /* (null) in Sources */,
+				3934E6F61C73FFD80055E219 /* PocketUIApplication.m in Sources */,
+				393009EC1C73DC38009BB57F /* LoginSafariViewController.m in Sources */,
 				39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */,
 				395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */,
 				39092F0F1BB7062F001AAB77 /* main.m in Sources */,
 				393715221C5ED14500CFD16A /* DetailViewController.m in Sources */,
 				39374D221C6F92CD00ADB193 /* (null) in Sources */,
+				393009E91C729DD9009BB57F /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
