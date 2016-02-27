@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "PocketAPI.h"
-
+#import "Pocket_Voice-Swift.h" //hue color
 
 @interface LoginViewController () <SFSafariViewControllerDelegate>
 
@@ -27,7 +27,8 @@
                                              selector:@selector(showSafariViewController:)
                                                  name:@"pocketLoginSafarisNeeded"
                                                object:nil];
-
+    self.view.backgroundColor = [UIColor hex: @"#2b90d9"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +41,7 @@
     NSDictionary *dic = [notification userInfo];
     NSString *urlString = dic[@"url"];
     NSLog(@"url :%@", notification);
-    SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:urlString] entersReaderIfAvailable:NO];
+    SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"https://getpocket.com/auth/authorize?request_token=211eb0e8-f65a-5032-847e-1c1bdc&redirect_uri=pocketapp46280%3AauthorizationFinished"] entersReaderIfAvailable:NO];
         safariVC.delegate = self;
         UIViewController *frontViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
         if (frontViewController.presentedViewController)

@@ -7,10 +7,15 @@
 //
 
 #import "AudioControlsView.h"
+#import "Pocket_Voice-Swift.h"
 
 
 @implementation AudioControlsView
-
+//#2C577D
+//#3371A9
+//#31608B
+//#243B50
+//#192632
 
 
 
@@ -20,11 +25,11 @@
  
    
     //audio controls
-    //    self.playSlider.minimumTrackTintColor = [UIColor blackColor];
-    //    self.playSlider.maximumTrackTintColor = [UIColor blackColor];
-    //    UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    //    [self.playSlider setThumbImage:image forState:UIControlStateNormal];
-    
+    self.currentTimeSlider.minimumTrackTintColor = [UIColor hex:@"#2C577D"];
+        self.currentTimeSlider.maximumTrackTintColor = [UIColor hex:@"#2C577D"];
+        UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self.currentTimeSlider setThumbImage:image forState:UIControlStateNormal];
+    self.backgroundColor = [UIColor hex:@"#2b90d9"];
     // Sound item
     
     self.player = [[AVAudioPlayer alloc]initWithContentsOfURL:self.fileURL error:nil];

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PocketAPI.h"
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIPickerViewAccessibilityDelegate>
 
 @end

@@ -41,9 +41,13 @@
 		393D8C211C6047FB009457D0 /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C121C604794009457D0 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		393D8C221C6047FB009457D0 /* WatsonDeveloperCloud.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C131C604794009457D0 /* WatsonDeveloperCloud.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		393D8C231C6047FB009457D0 /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C141C604794009457D0 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3943BE3C1C7D320A001DA013 /* museo_slab_500-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3943BE3B1C7D320A001DA013 /* museo_slab_500-webfont.ttf */; };
+		3943BE3E1C7D33BD001DA013 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3943BE3D1C7D33BD001DA013 /* SourceSansPro-Regular.ttf */; };
 		394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394835611BB9B20B003A60E3 /* LoginViewController.m */; };
 		395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */; };
 		396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 396684D01C5FDA4B00FCE48E /* PocketManager.m */; };
+		396998B91C790F9F00741239 /* UIColor+Hue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396998B81C790F9F00741239 /* UIColor+Hue.swift */; };
+		39E399DC1C8262EB00CA4599 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39E399DB1C8262EB00CA4599 /* Pods-acknowledgements.plist */; };
 		39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */; };
 		EA4C5F76EAD133271470DEDB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3289441E480D48FCA48069 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -103,12 +107,16 @@
 		393D8C121C604794009457D0 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		393D8C131C604794009457D0 /* WatsonDeveloperCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatsonDeveloperCloud.framework; path = Carthage/Build/iOS/WatsonDeveloperCloud.framework; sourceTree = "<group>"; };
 		393D8C141C604794009457D0 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = "<group>"; };
+		3943BE3B1C7D320A001DA013 /* museo_slab_500-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museo_slab_500-webfont.ttf"; sourceTree = "<group>"; };
+		3943BE3D1C7D33BD001DA013 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		394835601BB9B20B003A60E3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		394835611BB9B20B003A60E3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatsonTTSManager.swift; sourceTree = "<group>"; };
 		395A09251C618C5D00C61BB2 /* Pocket Voice-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pocket Voice-Bridging-Header.h"; sourceTree = "<group>"; };
 		396684CF1C5FDA4B00FCE48E /* PocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketManager.h; sourceTree = "<group>"; };
 		396684D01C5FDA4B00FCE48E /* PocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketManager.m; sourceTree = "<group>"; };
+		396998B81C790F9F00741239 /* UIColor+Hue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hue.swift"; sourceTree = "<group>"; };
+		39E399DB1C8262EB00CA4599 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketItem.h; sourceTree = "<group>"; };
 		39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketItem.m; sourceTree = "<group>"; };
 		499AE7A6C3E8B6133690D58C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +175,8 @@
 				393447111C628B9C0021BD1D /* Views */,
 				39092F191BB7062F001AAB77 /* Assets.xcassets */,
 				39092F1E1BB7062F001AAB77 /* Info.plist */,
+				3943BE3D1C7D33BD001DA013 /* SourceSansPro-Regular.ttf */,
+				3943BE3B1C7D320A001DA013 /* museo_slab_500-webfont.ttf */,
 				39092F0D1BB7062F001AAB77 /* Supporting Files */,
 				395A09251C618C5D00C61BB2 /* Pocket Voice-Bridging-Header.h */,
 			);
@@ -176,6 +186,7 @@
 		39092F0D1BB7062F001AAB77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39E399DB1C8262EB00CA4599 /* Pods-acknowledgements.plist */,
 				39092F0E1BB7062F001AAB77 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -184,6 +195,7 @@
 		393447111C628B9C0021BD1D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				39300A141C73E8DD009BB57F /* PocketLoginViewController.xib */,
 				39313CD01C713A320081B679 /* AudioControlView.xib */,
 				39092F161BB7062F001AAB77 /* Main.storyboard */,
 				39092F1B1BB7062F001AAB77 /* LaunchScreen.storyboard */,
@@ -212,9 +224,9 @@
 			isa = PBXGroup;
 			children = (
 				39313CD21C713A3D0081B679 /* AudioControlsView.h */,
+				39313CD31C713A3D0081B679 /* AudioControlsView.m */,
 				3934E6F41C73FFD80055E219 /* PocketUIApplication.h */,
 				3934E6F51C73FFD80055E219 /* PocketUIApplication.m */,
-				39313CD31C713A3D0081B679 /* AudioControlsView.m */,
 				39092F271BB9A26F001AAB77 /* ArticlesListTableViewController.h */,
 				39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */,
 				393715201C5ED14500CFD16A /* DetailViewController.h */,
@@ -232,15 +244,15 @@
 		396684CE1C5FD71F00FCE48E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				39300A141C73E8DD009BB57F /* PocketLoginViewController.xib */,
 				39F46E0A1BBF3BD3000C9BB9 /* PocketItem.h */,
 				39F46E0B1BBF3BD3000C9BB9 /* PocketItem.m */,
 				396684CF1C5FDA4B00FCE48E /* PocketManager.h */,
 				396684D01C5FDA4B00FCE48E /* PocketManager.m */,
-				395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */,
-				39313CD51C714FEC0081B679 /* SwiftSpinner.swift */,
 				393447121C628BBF0021BD1D /* ReadabilityManager.h */,
 				393447131C628BBF0021BD1D /* ReadabilityManager.m */,
+				395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */,
+				39313CD51C714FEC0081B679 /* SwiftSpinner.swift */,
+				396998B81C790F9F00741239 /* UIColor+Hue.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -331,7 +343,10 @@
 				39092F1D1BB7062F001AAB77 /* LaunchScreen.storyboard in Resources */,
 				39092F1A1BB7062F001AAB77 /* Assets.xcassets in Resources */,
 				39092F181BB7062F001AAB77 /* Main.storyboard in Resources */,
+				39E399DC1C8262EB00CA4599 /* Pods-acknowledgements.plist in Resources */,
+				3943BE3E1C7D33BD001DA013 /* SourceSansPro-Regular.ttf in Resources */,
 				39313CD11C713A320081B679 /* AudioControlView.xib in Resources */,
+				3943BE3C1C7D320A001DA013 /* museo_slab_500-webfont.ttf in Resources */,
 				39300A151C73E8DD009BB57F /* PocketLoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +411,7 @@
 				394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */,
 				393447141C628BBF0021BD1D /* ReadabilityManager.m in Sources */,
 				39092F121BB7062F001AAB77 /* AppDelegate.m in Sources */,
+				396998B91C790F9F00741239 /* UIColor+Hue.swift in Sources */,
 				39F46E0C1BBF3BD3000C9BB9 /* PocketItem.m in Sources */,
 				39313CD61C714FEC0081B679 /* SwiftSpinner.swift in Sources */,
 				39374D231C6F92CD00ADB193 /* (null) in Sources */,

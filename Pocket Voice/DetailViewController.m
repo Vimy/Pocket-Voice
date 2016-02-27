@@ -36,12 +36,15 @@
     [super viewDidLoad];
     self.title = self.item.title;
     self.automaticallyAdjustsScrollViewInsets = NO ;//textview has whitespace otherwise
-
+    
+ 
+    //MuseoSlab-500
     
     
-    
-    
-    
+   // self.textView.backgroundColor = [UIColor hex:@"#282c37"]; lichtgrijs
+    self.textView.backgroundColor = [UIColor hex:@"#E1E3E4"];
+    self.textView.textColor = [UIColor hex:@"#313131"];
+    //self.textView.font = [UIFont fontWithName:<#(nonnull NSString *)#> size:<#(CGFloat)#>]
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = self.view.center;
@@ -123,10 +126,10 @@
 {
     _swiftySpinner = [SwiftSpinner new];
     [SwiftSpinner show:@"Generating audio" animated:YES];
-
+//
 //    NSArray * dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString *docsDir = [dirPaths objectAtIndex:0];
-    
+//    
 //    finalAudioPath = [docsDir stringByAppendingPathComponent: @"audio.m4a"];
 //    if ([[NSFileManager defaultManager] fileExistsAtPath:finalAudioPath])
 //    {
@@ -135,8 +138,9 @@
 //    else
 //    {
    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
-
+   // WatsonTTSManager *ttsManager = [[WatsonTTSManager alloc]init];
+       WatsonTTSManager *ttsManager = [WatsonTTSManager sharedInstance];
+       
    //https://github.com/BoltsFramework/Bolts-ObjC
     //http://stackoverflow.com/questions/34212022/downloading-images-asynchronously-in-sequence?rq=1
     
@@ -174,7 +178,7 @@
 
    });
     
-  //  }
+   // }
     
     //http://eppz.eu/blog/uiview-from-xib/
 }
@@ -250,6 +254,7 @@
                NSLog(@"Waiting on export audiofile");
            }
         
+           
     }];
 }
 
@@ -271,9 +276,9 @@
         self.audioView.fileURL = audioURL;
     }
     
-   self.audioView.frame = CGRectMake(0,self.view.bounds.size.height+self.audioView.frame.size.height, self.view.bounds.size.width, 70);
+    self.audioView.frame = CGRectMake(0,self.view.bounds.size.height+self.audioView.frame.size.height, self.view.bounds.size.width, 90);
    // audioView.frame= CGRectMake(0,300 , self.view.frame.size.width, 70);
-    self.audioView.backgroundColor = [UIColor purpleColor];
+   // self.audioView.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:self.audioView];
     [self showViewAnimation];
     
@@ -282,7 +287,7 @@
 - (void)showViewAnimation
 {
     [UIView animateWithDuration:0.8 animations:^{
-        self.audioView.frame = CGRectMake(0,self.view.bounds.size.height-self.audioView.frame.size.height, self.view.bounds.size.width, 70);
+        self.audioView.frame = CGRectMake(0,self.view.bounds.size.height-self.audioView.frame.size.height, self.view.bounds.size.width, 90);
     } completion:^(BOOL finished) {
         NSLog(@"Animatie geslaagd!");
         [self.audioView play:self];
@@ -293,7 +298,7 @@
 {
     
     [UIView animateWithDuration:0.8 animations:^{
-        self.audioView.frame = CGRectMake(0,self.view.bounds.size.height+self.audioView.frame.size.height, self.view.bounds.size.width, 70);
+        self.audioView.frame = CGRectMake(0,self.view.bounds.size.height+self.audioView.frame.size.height, self.view.bounds.size.width, 90);
     } completion:^(BOOL finished) {
         NSLog(@"Animatie geslaagd!");
     }];

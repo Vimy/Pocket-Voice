@@ -118,8 +118,7 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
                                                                           NSCharacterEncodingDocumentAttribute:@(NSUTF8StringEncoding)}
                                                      documentAttributes:nil
                                                                   error:nil];
- 
-    
+
     NSString *finalString = [attr string];
     return finalString;
 }

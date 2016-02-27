@@ -18,6 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
+    //https://github.com/jdg/MBProgressHUD
+
+    //http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
     [[PocketAPI sharedAPI] setConsumerKey:@"46280-1a2011393890da7aead8e90c"];
 
     NSString *storyboardId = [[PocketAPI sharedAPI] isLoggedIn] ? @"articlesListVC" : @"loginVC";

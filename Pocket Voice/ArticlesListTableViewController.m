@@ -8,11 +8,11 @@
 
 #import "ArticlesListTableViewController.h"
 #import "PocketItem.h"
-#import "PocketAPI.h"
+//#import "PocketAPI.h"
 #import "DetailViewController.h"
 #import "PocketManager.h"
-
-
+#import "Pocket_Voice-Swift.h"
+#import "AppDelegate.h"
 
 @interface ArticlesListTableViewController ()
 {
@@ -25,8 +25,20 @@
 
 //https://www.readability.com/developers/api
 
+//#2C577D
+//#3371A9
+//#31608B
+//#243B50
+//#192632
 
-  
+  //http://www.lolcolors.com/
+
+//#282c37 zwart
+//#9baec8 grijs
+//#d9e1e8 lichter grijs
+//#2b90d9 blauw
+
+
 @implementation ArticlesListTableViewController
 
 
@@ -34,14 +46,44 @@
 {
     [super viewDidLoad];
     
+    
+    
+   // AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
+   // appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+
+
+//    for (NSString* family in [UIFont familyNames])
+//    {
+//        NSLog(@"%@", family);
+//        
+//        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+//        {
+//            NSLog(@"  %@", name);
+//        }
+//    }
+    
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = self.view.center;
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
+    self.navigationController.navigationBar.barTintColor = [UIColor hex:@"#2b90d9"];
+    self.navigationController.navigationBar.tintColor = [UIColor hex:@"#d9e1e8"];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor hex:@"#d9e1e8"]}];
+        self.navigationController.navigationBar.translucent = NO;
     
     
-    self.navigationController.hidesBarsOnSwipe = TRUE;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+
+    
+    //self.navigationController.navigationBar.barTintColor = [UIColor hex:@"#2C577D"];
+    //self.tableView.backgroundColor = [UIColor hex:@"#31608B"];;
+  
+//    UIColor.hex
+//    
+//    UIColor *color = https://github.com/hyperoslo/Hue
+    //self.navigationController.hidesBarsOnSwipe = TRUE;
     
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -91,6 +133,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    if (self.navigationController.navigationBarHidden == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,13 +203,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     if(pocketItemsArray)
     {
+        messageLabel.hidden = YES;
         return 1;
     }
     else
     {
-        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
         
         messageLabel.text = @"No data is currently available. Please pull down to refresh.";
         messageLabel.textColor = [UIColor blackColor];
@@ -185,10 +241,16 @@
     PocketItem *item = [pocketItemsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
     cell.detailTextLabel.text = item.domain;
-
-    
+    cell.backgroundColor = [UIColor hex:@"#282c37"];
+    cell.textLabel.textColor = [UIColor hex:@"#9baec8"];
+    cell.detailTextLabel.textColor = [UIColor hex:@"#d9e1e8"];
     return cell;
 }
+//#2C577D
+//#3371A9
+//#31608B
+//#243B50
+//#192632
 
 #pragma mark - UI settings
 

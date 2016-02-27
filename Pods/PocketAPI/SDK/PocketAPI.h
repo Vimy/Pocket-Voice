@@ -44,8 +44,6 @@
 
 #import <Foundation/Foundation.h>
 #import "PocketAPITypes.h"
-#import <SafariServices/SafariServices.h>
-
 
 @class PocketAPILogin;
 

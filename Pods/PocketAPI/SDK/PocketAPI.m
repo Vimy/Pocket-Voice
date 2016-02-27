@@ -28,8 +28,6 @@
 #import <dispatch/dispatch.h>
 #import <sys/sysctl.h>
 #import <CommonCrypto/CommonDigest.h>
-#import "PocketLoginViewController.h"
-
 
 #define POCKET_SDK_VERSION @"1.0.2"
 
@@ -43,7 +41,7 @@ static NSString *kPocketAPICurrentLoginKey = @"PocketAPICurrentLogin";
 
 #pragma mark Private APIs (please do not call these directly)
 
-@interface PocketAPI  () <SFSafariViewControllerDelegate>
+@interface PocketAPI  ()
 
 +(NSString *)pkt_hashForConsumerKey:(NSString *)consumerKey accessToken:(NSString *)accessToken;
 
@@ -273,7 +271,6 @@ static PocketAPI *sSharedAPI = nil;
 	[super dealloc];
 }
 
-
 -(BOOL)handleOpenURL:(NSURL *)url{
 	if([[url scheme] isEqualToString:self.URLScheme]){
 		NSDictionary *urlQuery = [NSDictionary pkt_dictionaryByParsingURLEncodedFormString:[url query]];
@@ -299,32 +296,7 @@ static PocketAPI *sSharedAPI = nil;
 				[login _setRequestToken:requestToken];
 				[login _setReverseAuth:YES];
 			}
-        }
-        else if ([[url path] isEqualToString:@"/login"] && [urlQuery objectForKey:@"url"])
-        {
-            NSLog(@"PocketAPI url login: %@", urlQuery[@"url"]);
-            NSDictionary *dic = @{@"url":urlQuery[@"url"] };
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"pocketLoginSafariNeeded" object:self userInfo:dic];
-//            SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:urlQuery[@"url"]] entersReaderIfAvailable:NO];
-//
-////            SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"http://www.google.be"] entersReaderIfAvailable:NO];
-//            safariVC.delegate = self;
-//            UIViewController *frontViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-//                                    if (frontViewController.presentedViewController)
-//                                    {
-//                                            frontViewController = frontViewController.presentedViewController;
-//                                    }
-//
-//            [frontViewController presentViewController:safariVC animated:YES completion:nil];
-            
-//            PocketLoginViewController *loginViewController = [[[PocketLoginViewController alloc] initWithNibName:@"PocketLoginViewController" bundle:nil] autorelease];
-//                        loginViewController.url = urlQuery[@"url"];
-//                        loginViewController.modalTransitionStyle = UIModalPresentationPageSheet;
-//                        UIViewController *frontViewController = [self topViewController];
-//                         [frontViewController presentViewController:loginViewController animated:NO completion:nil];
-//
-            return YES;
-        }
+		}
 		
 		if(!login){
 			login = [self pkt_loadCurrentLoginFromDefaults];
@@ -338,44 +310,6 @@ static PocketAPI *sSharedAPI = nil;
 	
 	return NO;
 }
-
-#pragma mark - SFSafariViewController delegate methods
--(void)safariViewController:(SFSafariViewController *)controller didCompleteInitialLoad:(BOOL)didLoadSuccessfully
-{
-    NSLog(@"SFSafariViewController loaded");
-}
-
--(void)safariViewControllerDidFinish:(SFSafariViewController *)controller
-{
-    NSLog(@"SFSafariViewController done button touched");
-}
-//
-// ...
-//
-
-
-
-- (UIViewController*)topViewController
-{
-        return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-}
-
-- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController
-{
-        if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-                UITabBarController* tabBarController = (UITabBarController*)rootViewController;
-                return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
-            } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-                    UINavigationController* navigationController = (UINavigationController*)rootViewController;
-                    return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
-                } else if (rootViewController.presentedViewController) {
-                        UIViewController* presentedViewController = rootViewController.presentedViewController;
-                        return [self topViewControllerWithRootViewController:presentedViewController];
-                    } else {
-                            return rootViewController;
-                        }
-}
-
 
 -(NSUInteger)appID{
 	NSUInteger appID = NSNotFound;
@@ -848,11 +782,8 @@ static PocketAPI *sSharedAPI = nil;
 	[super dealloc];
 }
 
-
 @end
 #endif
-
-
 
 NSString *PocketAPITweetID(unsigned long long tweetID){
 	return [NSString stringWithFormat:@"%llu", tweetID];

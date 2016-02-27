@@ -12,7 +12,7 @@
 //https://github.com/Pocket/Pocket-ObjC-SDK/pull/10
 - (BOOL)openURL:(NSURL*)url
 {
-    NSLog(@"Open url: %@", [url host]);
+    NSLog(@"Open url: %@", url);
     
     
     
@@ -22,7 +22,10 @@
     if ([string localizedCaseInsensitiveContainsString:substring])
     {
         NSString *urlString = [string stringByReplacingOccurrencesOfString:@"pocketapp46280:///login/?url=" withString:@""];
+        NSLog(@"URLSFDSSTRING :%@", urlString);
+
         NSString *finalString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSLog(@"FINALSTRING :%@", finalString);
         NSDictionary *dic = @{@"url":finalString};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"pocketLoginSafarisNeeded" object:dic];
         return NO;
