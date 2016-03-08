@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "PocketAPI.h"
 
-@interface SettingsViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIPickerViewAccessibilityDelegate>
+@interface SettingsViewController : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIPickerViewAccessibilityDelegate, MFMailComposeViewControllerDelegate>
 
 @end

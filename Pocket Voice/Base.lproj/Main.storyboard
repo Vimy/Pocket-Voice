@@ -30,7 +30,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHx-R0-fNE">
-                                <rect key="frame" x="250" y="218" width="100" height="38"/>
+                                <rect key="frame" x="250" y="296" width="100" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="mEl-9S-7Fw"/>
                                 </constraints>
@@ -47,8 +47,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="gHx-R0-fNE" secondAttribute="trailing" constant="61" id="Xhf-d0-NRM"/>
                             <constraint firstItem="7cl-gh-y7Q" firstAttribute="centerX" secondItem="IcF-bT-E87" secondAttribute="centerX" id="ffG-Vv-U2M"/>
                             <constraint firstItem="7cl-gh-y7Q" firstAttribute="top" secondItem="VbO-zd-jwU" secondAttribute="bottom" constant="67" id="gKZ-Xr-EGU"/>
-                            <constraint firstItem="lko-v2-U1N" firstAttribute="top" secondItem="gHx-R0-fNE" secondAttribute="bottom" constant="344" id="iKv-Hw-ct3"/>
-                            <constraint firstItem="gHx-R0-fNE" firstAttribute="top" secondItem="7cl-gh-y7Q" secondAttribute="bottom" constant="3" id="lyZ-VT-NQU"/>
+                            <constraint firstItem="lko-v2-U1N" firstAttribute="top" secondItem="gHx-R0-fNE" secondAttribute="bottom" constant="266" id="iKv-Hw-ct3"/>
+                            <constraint firstItem="gHx-R0-fNE" firstAttribute="top" secondItem="7cl-gh-y7Q" secondAttribute="bottom" constant="81" id="lyZ-VT-NQU"/>
                             <constraint firstItem="gHx-R0-fNE" firstAttribute="centerX" secondItem="IcF-bT-E87" secondAttribute="centerX" id="vag-rC-iMN"/>
                             <constraint firstItem="7cl-gh-y7Q" firstAttribute="centerX" secondItem="gHx-R0-fNE" secondAttribute="centerX" id="z2j-I4-QhP"/>
                         </constraints>
@@ -280,8 +280,11 @@
                         <outlet property="creditsCell" destination="exZ-rM-Pco" id="mnh-ES-JvF"/>
                         <outlet property="librariesCell" destination="btW-ij-0LN" id="ERH-3E-mxn"/>
                         <outlet property="logoutCell" destination="dgy-he-00w" id="3Um-bm-BXU"/>
+                        <outlet property="selectVoiceLabel" destination="0vn-wp-isp" id="JZF-7f-LHD"/>
                         <outlet property="selectedVoiceLabel" destination="isz-He-uLs" id="01w-tU-xuc"/>
+                        <outlet property="setVoiceButton" destination="F0Q-QG-DHC" id="7YJ-Ad-6Qc"/>
                         <outlet property="supportCell" destination="fSt-j2-sXJ" id="Otz-Ip-IHp"/>
+                        <outlet property="voicePickerCell" destination="yKB-a3-qIi" id="aav-fn-SOC"/>
                         <outlet property="voiceSelectCell" destination="on5-8o-6Dc" id="lFD-iO-BQr"/>
                         <outlet property="voicesPickerView" destination="Xii-Kl-1HA" id="J3Z-zd-mCP"/>
                     </connections>

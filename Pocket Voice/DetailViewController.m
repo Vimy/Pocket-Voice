@@ -37,12 +37,9 @@
     self.title = self.item.title;
     self.automaticallyAdjustsScrollViewInsets = NO ;//textview has whitespace otherwise
     
-    
- 
     //MuseoSlab-500
-    
-    
    // self.textView.backgroundColor = [UIColor hex:@"#282c37"]; lichtgrijs
+    
     self.textView.backgroundColor = [UIColor hex:@"#282c37"];
     self.textView.textColor = [UIColor hex:@"#d9e1e8"];
     self.textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -57,9 +54,7 @@
     [spinner startAnimating];
     
     dispatch_queue_t parseTextQueue = dispatch_queue_create("textparser", NULL);
-    
     ReadabilityManager *contentManager = [[ReadabilityManager alloc]init];
-    
     dispatch_async(parseTextQueue, ^{[contentManager parseWebsiteForContent:self.item.url withCallback:^(BOOL success, NSMutableArray *response, NSError *error)
     {
         if(success)

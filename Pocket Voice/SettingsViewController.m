@@ -22,11 +22,14 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *librariesCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *voiceSelectCell;
 @property (strong, nonatomic) IBOutlet UILabel *selectedVoiceLabel;
+@property (strong, nonatomic) IBOutlet UITableViewCell *voicePickerCell;
 
 @property (strong, nonatomic) NSDictionary *voicesDic;
 @property (strong, nonatomic) NSArray *pickerVoicesArray;
 @property (strong, nonatomic) WatsonTTSManager *manager;
 @property  BOOL datePickerIsVisible;
+@property (strong, nonatomic) IBOutlet UIButton *setVoiceButton;
+@property (strong, nonatomic) IBOutlet UILabel *selectVoiceLabel;
 
 @end
 
@@ -44,19 +47,34 @@
     self.tableView.backgroundColor = [UIColor hex:@"#282c37"];
     //self.tableView.backgroundColor = [UIColor hex:@"#282c37"];
    
+    if([self.tableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)])
+    {
+        self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
+    }
+//  self.voicesArray = @[@{@"Kate (GB)":@"en-GB_KateVoice"},@{@"Allison (US)":@"en-US_AllisonVoice"},@{@"Lisa (US)":@"en-US_LisaVoice"}];
     
-//    self.voicesArray = @[@{@"Kate (GB)":@"en-GB_KateVoice"},@{@"Allison (US)":@"en-US_AllisonVoice"},@{@"Lisa (US)":@"en-US_LisaVoice"}];
+    self.navigationController.title = @"Settings";
+    
     self.pickerVoicesArray = @[@"Kate (GB)", @"Allison (US)", @"Lisa (US)"];
 
     self.datePickerIsVisible = NO;
+    self.selectVoiceLabel.textColor = [UIColor hex:@"#9baec8"];
     
+    self.selectedVoiceLabel.textColor = [UIColor hex:@"#d9e1e8"];
+    
+    self.voicesPickerView.backgroundColor = [UIColor hex:@"#282c37"];
+    
+    self.setVoiceButton.titleLabel.textColor = [UIColor hex:@"#d9e1e8"];
+    
+    self.voicePickerCell.backgroundColor = [UIColor hex:@"#282c37"];
     self.logoutCell.backgroundColor = [UIColor hex:@"#282c37"];
     self.supportCell.backgroundColor = [UIColor hex:@"#282c37"];
     self.creditsCell.backgroundColor = [UIColor hex:@"#282c37"];
     self.librariesCell.backgroundColor = [UIColor hex:@"#282c37"];
     self.voiceSelectCell.backgroundColor = [UIColor hex:@"#282c37"];
     
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
  //   http://www.appcoda.com/expandable-table-view/
     
 }
@@ -133,6 +151,32 @@
 
 #pragma mark tableview
 
+//-(void)tableView:(UITableView *)tableView willDisplayCell:
+//(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [cell setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    
+//    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [cell setLayoutMargins:UIEdgeInsetsZero];
+//    }
+//}
+//
+//-(void)viewDidLayoutSubviews
+//{
+//    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)])
+//    {
+//        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    
+//    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)])
+//    {
+//        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+//    }
+//}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
@@ -159,7 +203,55 @@
         self.datePickerIsVisible = YES;
         [self animateExpandedCell];
     }
+    else if (tappedCell == self.supportCell)
+    {
+        [self showMailViewController];
+    }
     
+}
+
+- (void)showMailViewController
+{
+    
+    
+
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
+        mail.mailComposeDelegate = self;
+        [mail setSubject:@""];
+        [mail setMessageBody:@"" isHTML:NO];
+        [mail setToRecipients:@[@"mathiasv@noizystudios.net"]];
+        
+        [self presentViewController:mail animated:YES completion:NULL];
+    }
+    else
+    {
+        NSLog(@"This device cannot send email");
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            NSLog(@"You sent the email.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"You saved a draft of this email");
+            break;
+        case MFMailComposeResultCancelled:
+            NSLog(@"You cancelled sending this email.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+        default:
+            NSLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -214,6 +306,15 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     return [self.pickerVoicesArray count];
+}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title = [self.pickerVoicesArray objectAtIndex:row];
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor hex:@"#9baec8"]}];
+    
+    return attString;
+    
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component

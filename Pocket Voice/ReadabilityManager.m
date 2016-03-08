@@ -22,13 +22,14 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
     
     NSString *finalURLString = [NSString stringWithFormat:@"%@%@%@", baseURLString,url,tokenString];
     NSURL *finalURL = [NSURL URLWithString:finalURLString];
-    NSLog(@"url is: %@", finalURL);
+    NSLog(@"ReadabilityManager.h -- url is: %@", finalURL);
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager setResponseSerializer:[AFJSONResponseSerializer serializer]];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
    // manager.responseSerializer = nil;
+
     [manager GET:finalURL.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
        
       //  NSLog(@"ResponseObject --ReadabilityManager.h: %@",responseObject);
@@ -116,6 +117,10 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
                                                      documentAttributes:nil
                                                                   error:nil];
 
+    
+
+
+    
     NSString *htmlFreeString = [attr string];
     //NSLog(@"string zonder hmtl: %@", finalString);
     
