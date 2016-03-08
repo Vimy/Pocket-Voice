@@ -9,5 +9,8 @@
 #ifndef Colors_h
 #define Colors_h
 
+#define kAchtergrondKleur #282c37;
+
+
 
 #endif /* Colors_h */

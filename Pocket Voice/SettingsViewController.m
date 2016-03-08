@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "Pocket_Voice-Swift.h"
 #import "VTAcknowledgementsViewController.h"
+#import "Pocket_Voice-Swift.h"
+#import "Colors.h"
 
 
 @interface SettingsViewController ()
@@ -18,10 +20,13 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *supportCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *creditsCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *librariesCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *voiceSelectCell;
+@property (strong, nonatomic) IBOutlet UILabel *selectedVoiceLabel;
+
 @property (strong, nonatomic) NSDictionary *voicesDic;
 @property (strong, nonatomic) NSArray *pickerVoicesArray;
 @property (strong, nonatomic) WatsonTTSManager *manager;
-
+@property  BOOL datePickerIsVisible;
 
 @end
 
@@ -36,11 +41,22 @@
     self.manager = [WatsonTTSManager sharedInstance];
     
     self.voicesDic = @{@"Kate (GB)":@"en-GB_KateVoice", @"Allison (US)":@"en-US_AllisonVoice", @"Lisa (US)":@"en-US_LisaVoice"};
-    
+    self.tableView.backgroundColor = [UIColor hex:@"#282c37"];
+    //self.tableView.backgroundColor = [UIColor hex:@"#282c37"];
+   
     
 //    self.voicesArray = @[@{@"Kate (GB)":@"en-GB_KateVoice"},@{@"Allison (US)":@"en-US_AllisonVoice"},@{@"Lisa (US)":@"en-US_LisaVoice"}];
     self.pickerVoicesArray = @[@"Kate (GB)", @"Allison (US)", @"Lisa (US)"];
 
+    self.datePickerIsVisible = NO;
+    
+    self.logoutCell.backgroundColor = [UIColor hex:@"#282c37"];
+    self.supportCell.backgroundColor = [UIColor hex:@"#282c37"];
+    self.creditsCell.backgroundColor = [UIColor hex:@"#282c37"];
+    self.librariesCell.backgroundColor = [UIColor hex:@"#282c37"];
+    self.voiceSelectCell.backgroundColor = [UIColor hex:@"#282c37"];
+    
+    
  //   http://www.appcoda.com/expandable-table-view/
     
 }
@@ -63,8 +79,15 @@
         
         UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"loginVC"];
         
-        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
-        appDelegateTemp.window.rootViewController = navigation;
+        ActivityViewController *logoutMeldingController = [[ActivityViewController alloc]initWithMessage:@"Logging out.."];
+        [self presentViewController:logoutMeldingController animated:true completion:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            appDelegateTemp.window.rootViewController = rootController;
+        });
+        
+       // UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        
     }]];
     
 
@@ -92,6 +115,7 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
+
 - (IBAction)setVoicesFromPickerView:(UIButton *)sender
 {
     NSString *selectedVoiceValue = [self.voicesPickerView.delegate pickerView:
@@ -99,18 +123,29 @@
                                     [self.voicesPickerView selectedRowInComponent:0] forComponent:1];
     
     NSString *selectedVoice = [self.voicesDic valueForKey:selectedVoiceValue];
+    self.selectedVoiceLabel.text = selectedVoiceValue;
     self.manager.voiceName = selectedVoice;
-
+    self.datePickerIsVisible = NO;
+    [self animateExpandedCell];
 }
 
 
 
 #pragma mark tableview
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+   // UIView *selectedBackgroundView = [[UIView alloc] init];
+
+  //  cell.backgroundColor = [UIColor hex:@"#d9e1e8"];
+    cell.textLabel.textColor = [UIColor hex:@"#9baec8"];
+    return cell;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *tappedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-    
     if (tappedCell == self.logoutCell)
     {
         [self logout];
@@ -119,7 +154,54 @@
     {
         [self showLibrariesViewController];
     }
+    else if (tappedCell == self.voiceSelectCell)
+    {
+        self.datePickerIsVisible = YES;
+        [self animateExpandedCell];
+    }
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row == 2) { // this is my picker cell
+        if (self.datePickerIsVisible) {
+            return 249;
+        } else {
+            return 0;
+        }
+    } else {
+        return self.tableView.rowHeight;
+    }
+}
+
+- (void)animateExpandedCell
+{
+    [UIView animateWithDuration:.6 animations:^{
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
+    }];
+
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    // Set the text color of our header/footer text.
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor hex:@"#d9e1e8"]];
+    
+    // Set the background color of our header/footer.
+  
+    
+    // You can also do this to set the background color of our header/footer,
+    //    but the gradients/other effects will be retained.
+    // view.tintColor = [UIColor blackColor];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *footer = (UITableViewHeaderFooterView *)view;
+    footer.textLabel.textColor = [UIColor hex:@"#d9e1e8"];
 }
 
 #pragma mark UIPickerView delegate

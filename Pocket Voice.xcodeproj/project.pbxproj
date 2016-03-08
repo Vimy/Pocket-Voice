@@ -43,6 +43,7 @@
 		393D8C231C6047FB009457D0 /* XCGLogger.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 393D8C141C604794009457D0 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3943BE3C1C7D320A001DA013 /* museo_slab_500-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3943BE3B1C7D320A001DA013 /* museo_slab_500-webfont.ttf */; };
 		3943BE3E1C7D33BD001DA013 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3943BE3D1C7D33BD001DA013 /* SourceSansPro-Regular.ttf */; };
+		3947B5191C8F181C0051550B /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3947B5181C8F181C0051550B /* ActivityViewController.swift */; };
 		394835621BB9B20B003A60E3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394835611BB9B20B003A60E3 /* LoginViewController.m */; };
 		395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */; };
 		396684D11C5FDA4B00FCE48E /* PocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 396684D01C5FDA4B00FCE48E /* PocketManager.m */; };
@@ -109,6 +110,8 @@
 		393D8C141C604794009457D0 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = "<group>"; };
 		3943BE3B1C7D320A001DA013 /* museo_slab_500-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "museo_slab_500-webfont.ttf"; sourceTree = "<group>"; };
 		3943BE3D1C7D33BD001DA013 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		3947B5181C8F181C0051550B /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		3947B51A1C8F246E0051550B /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
 		394835601BB9B20B003A60E3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		394835611BB9B20B003A60E3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatsonTTSManager.swift; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 				39092F281BB9A26F001AAB77 /* ArticlesListTableViewController.m */,
 				393715201C5ED14500CFD16A /* DetailViewController.h */,
 				393715211C5ED14500CFD16A /* DetailViewController.m */,
+				3947B51A1C8F246E0051550B /* Colors.h */,
 				394835601BB9B20B003A60E3 /* LoginViewController.h */,
 				394835611BB9B20B003A60E3 /* LoginViewController.m */,
 				393009EA1C73DC38009BB57F /* LoginSafariViewController.h */,
@@ -253,6 +257,7 @@
 				395A09231C618B3900C61BB2 /* WatsonTTSManager.swift */,
 				39313CD51C714FEC0081B679 /* SwiftSpinner.swift */,
 				396998B81C790F9F00741239 /* UIColor+Hue.swift */,
+				3947B5181C8F181C0051550B /* ActivityViewController.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				393009EC1C73DC38009BB57F /* LoginSafariViewController.m in Sources */,
 				39092F291BB9A26F001AAB77 /* ArticlesListTableViewController.m in Sources */,
 				395A09241C618B3900C61BB2 /* WatsonTTSManager.swift in Sources */,
+				3947B5191C8F181C0051550B /* ActivityViewController.swift in Sources */,
 				39092F0F1BB7062F001AAB77 /* main.m in Sources */,
 				393715221C5ED14500CFD16A /* DetailViewController.m in Sources */,
 				39374D221C6F92CD00ADB193 /* (null) in Sources */,
@@ -543,6 +549,7 @@
 				);
 				INFOPLIST_FILE = "Pocket Voice/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.noizystudios.Pocket-Voice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./Pocket Voice/Pocket Voice-Bridging-Header.h";
@@ -554,6 +561,7 @@
 			baseConfigurationReference = 499AE7A6C3E8B6133690D58C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Noizy, eenmanszaak (4TMN4G2PE7)";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -562,6 +570,7 @@
 				);
 				INFOPLIST_FILE = "Pocket Voice/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.noizystudios.Pocket-Voice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./Pocket Voice/Pocket Voice-Bridging-Header.h";

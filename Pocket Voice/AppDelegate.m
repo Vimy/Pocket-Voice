@@ -20,7 +20,7 @@
 {
     
     
-    //https://github.com/jdg/MBProgressHUD
+    
 
     //http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
     [[PocketAPI sharedAPI] setConsumerKey:@"46280-1a2011393890da7aead8e90c"];
@@ -74,8 +74,9 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+   
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

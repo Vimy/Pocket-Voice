@@ -17,20 +17,20 @@
     
     
     NSString *string = url.absoluteString;
-    NSString *substring = @"pocketapp46280:///login";
+   // NSString *substring = @"pocketapp46280:///login";
     
-    if ([string localizedCaseInsensitiveContainsString:substring])
+      if ([[url host] isEqualToString:@"getpocket.com"])
     {
         NSString *urlString = [string stringByReplacingOccurrencesOfString:@"pocketapp46280:///login/?url=" withString:@""];
         NSLog(@"URLSFDSSTRING :%@", urlString);
 
-        NSString *finalString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *finalString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
         NSLog(@"FINALSTRING :%@", finalString);
-        NSDictionary *dic = @{@"url":finalString};
+        
+        NSDictionary *dic = @{@"url":urlString}; //finalstring vervangen
         [[NSNotificationCenter defaultCenter] postNotificationName:@"pocketLoginSafarisNeeded" object:dic];
         return NO;
     }
-    
     return [super openURL:url];
 }
 @end

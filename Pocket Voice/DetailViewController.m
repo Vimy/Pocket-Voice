@@ -37,13 +37,17 @@
     self.title = self.item.title;
     self.automaticallyAdjustsScrollViewInsets = NO ;//textview has whitespace otherwise
     
+    
  
     //MuseoSlab-500
     
     
    // self.textView.backgroundColor = [UIColor hex:@"#282c37"]; lichtgrijs
-    self.textView.backgroundColor = [UIColor hex:@"#E1E3E4"];
-    self.textView.textColor = [UIColor hex:@"#313131"];
+    self.textView.backgroundColor = [UIColor hex:@"#282c37"];
+    self.textView.textColor = [UIColor hex:@"#d9e1e8"];
+    self.textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+
     //self.textView.font = [UIFont fontWithName:<#(nonnull NSString *)#> size:<#(CGFloat)#>]
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -105,7 +109,7 @@
     
     [self downloadAudio:self.audioResponse];
     
-
+    //https://github.com/jdg/MBProgressHUD
 }
     
 

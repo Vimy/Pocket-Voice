@@ -26,9 +26,9 @@
    
     //audio controls
     self.currentTimeSlider.minimumTrackTintColor = [UIColor hex:@"#2C577D"];
-        self.currentTimeSlider.maximumTrackTintColor = [UIColor hex:@"#2C577D"];
-        UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [self.currentTimeSlider setThumbImage:image forState:UIControlStateNormal];
+    self.currentTimeSlider.maximumTrackTintColor = [UIColor hex:@"#2C577D"];
+    UIImage *image = [[UIImage imageNamed:@"slider-thumb"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.currentTimeSlider setThumbImage:image forState:UIControlStateNormal];
     self.backgroundColor = [UIColor hex:@"#2b90d9"];
     // Sound item
     

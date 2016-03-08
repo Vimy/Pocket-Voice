@@ -17,9 +17,7 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
 
 - (void)parseWebsiteForContent:(NSMutableArray *)url withCallback:(LoadContentCompletionBlock)callback
 {
-    
-    
- 
+
     __block NSDictionary *jsonObject;
     
     NSString *finalURLString = [NSString stringWithFormat:@"%@%@%@", baseURLString,url,tokenString];
@@ -41,9 +39,6 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error :%@", error);
     }];
-    
-    
-
 }
 
 - (NSMutableArray *)getContentFromJSON:(NSDictionary *)jsonDic
@@ -113,14 +108,42 @@ static NSString *const tokenString = @"&token=69657162b8015b6d7b1544ebe4e2dae5b8
 }
 - (NSString *)stripHtmlFromString:(NSString *)string
 {
+    NSLog(@"String met HMTL: %@", string);
+    
     NSAttributedString *attr = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
                                                                 options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                                                                           NSCharacterEncodingDocumentAttribute:@(NSUTF8StringEncoding)}
                                                      documentAttributes:nil
                                                                   error:nil];
 
-    NSString *finalString = [attr string];
-    return finalString;
+    NSString *htmlFreeString = [attr string];
+    //NSLog(@"string zonder hmtl: %@", finalString);
+    
+//    
+//    
+//    
+//    NSDataDetector *linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+//    NSArray *matches = [linkDetector matchesInString:htmlFreeString options:0 range:NSMakeRange(0, [htmlFreeString length])];
+//    
+//    NSString *urlFreeString;
+//    for (NSTextCheckingResult *match in matches)
+//    {
+//        if ([match resultType] == NSTextCheckingTypeLink)
+//        {
+//            NSRange  range = [match rangeAtIndex:1];
+//           
+//            NSString* substringForMatch = [htmlFreeString substringWithRange:range];
+//             urlFreeString = [htmlFreeString stringByReplacingOccurrencesOfString:substringForMatch withString:@""];
+//             NSLog(@"SUBStRINGFORMATCH: %@", substringForMatch);
+//        }
+//    }
+//    
+//    NSString *finalString = urlFreeString;
+//    
+//    NSLog(@"string zonder hmtl: %@", finalString);
+//    return finalString;
+    
+    return htmlFreeString;
 }
 
 

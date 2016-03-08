@@ -35,7 +35,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxq-Bo-Lgj">
                     <rect key="frame" x="303" y="10" width="35" height="35"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="35" id="NBw-WZ-NLX"/>
                         <constraint firstAttribute="width" secondItem="fxq-Bo-Lgj" secondAttribute="height" multiplier="1:1" id="Yzs-mO-t5A"/>
+                        <constraint firstAttribute="width" constant="35" id="udx-IX-fyB"/>
                     </constraints>
                     <state key="normal" title="Stop" image="stop_filled"/>
                     <connections>
@@ -45,6 +47,8 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzw-b9-Il0">
                     <rect key="frame" x="170" y="10" width="35" height="35"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="35" id="QBB-KN-gTE"/>
+                        <constraint firstAttribute="height" constant="35" id="bGp-mX-jyZ"/>
                         <constraint firstAttribute="width" secondItem="dzw-b9-Il0" secondAttribute="height" multiplier="1:1" id="sK3-w3-BjA"/>
                     </constraints>
                     <state key="normal" title="Pauze" image="pause_filled"/>
@@ -55,7 +59,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9f-Zi-gUG">
                     <rect key="frame" x="41" y="10" width="25" height="35"/>
                     <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="2LT-PA-AmH"/>
                         <constraint firstAttribute="width" secondItem="G9f-Zi-gUG" secondAttribute="height" multiplier="5:7" id="HzA-xA-ANw"/>
+                        <constraint firstAttribute="height" constant="35" id="PtN-Fy-wf1"/>
                         <constraint firstAttribute="width" constant="25" id="xoE-b0-HQC"/>
                     </constraints>
                     <state key="normal" title="Play" image="play_filled"/>
